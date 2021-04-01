@@ -62,7 +62,6 @@ export const deleteBooking = (bookingId) => {
                     dispatch(fetchBookings())
                     dispatch(_deleteBooking("Successfully deleted booking!!"))
                 }else {
-                    console.log("RES", res)
                     dispatch(_deleteBooking("Booking with payment cannot be deleted"))
                 }
                 setTimeout(() => {

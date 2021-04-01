@@ -3,7 +3,7 @@ import * as actions from '../../actions/bookingAction'
 import { Button, ButtonGroup, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import React, { Component } from 'react'
 
-import Alert from '@material-ui/lab/Alert';
+import AlertMessage from '../AlertMessage';
 import { BookingNavBar } from "./BookingNavBar"
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -41,7 +41,6 @@ class ViewBookings extends Component {
 
     render() {
         const { isLoggedIn } = this.props;
-
         if (!isLoggedIn) {
             return <Redirect to="/login" />;
         }
@@ -49,9 +48,7 @@ class ViewBookings extends Component {
         return (
             <div>
                 <BookingNavBar isAdmin={this.props.user.roles.includes("ROLE_ADMIN")}/>
-                {this.state.displayAlert && <Alert variant="filled" severity={this.props.message.includes("Successfully") ? "success" : "error"} style={{ justifyContent: "center" }}>
-                    {this.props.message}
-                </Alert>}
+                {this.state.displayAlert && <AlertMessage message={this.props.message}/>}
                 <br></br><br></br>
                 <TableContainer component={Paper}>
                     <Table aria-label="customized table">
@@ -101,10 +98,10 @@ class ViewBookings extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        message: state.message,
+        message: state.bookingsData.message,
         bookings: state.bookingsData.bookings,
         isLoggedIn: state.auth.isLoggedIn,
-        user: state.auth.user
+        user: state.auth.user,
     }
 }
 

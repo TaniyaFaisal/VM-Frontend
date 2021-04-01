@@ -3,7 +3,7 @@ import * as actions from '../../actions/bookingAction';
 import { Button, Container, Paper, Typography } from '@material-ui/core';
 import React, { Component } from 'react'
 
-import Alert from '@material-ui/lab/Alert';
+import AlertMessage from '../AlertMessage';
 import { BookingNavBar } from "./BookingNavBar"
 import { connect } from 'react-redux';
 
@@ -45,9 +45,8 @@ class UpdateBooking extends Component {
                 :
                 <div>
                 <BookingNavBar/>
-                    {this.state.displayAlert && <Alert variant="filled" severity={this.props.message.includes("Successfully") ? "success" : "error"} style={{justifyContent:"center"}}>
-                        {this.props.message}
-                    </Alert>}
+                {this.state.displayAlert && <AlertMessage message={this.props.message}/>}
+                
                     <Container maxWidth="sm" style={{ marginTop: 15 }}>
                         <Paper elevation={5} style={{ padding: 8, justifyContent: "center", display: "flex" }} >
                             <form>

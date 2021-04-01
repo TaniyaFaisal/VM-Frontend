@@ -6,8 +6,6 @@ import CheckButton from "react-validation/build/button";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Form from "react-validation/build/form";
 import Grid from '@material-ui/core/Grid';
-import Input from "react-validation/build/input";
-import Link from '@material-ui/core/Link';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import { Redirect } from 'react-router-dom';

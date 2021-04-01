@@ -9,7 +9,6 @@ const bookingReducer = (state = initialState, { type, payload }) => {
         case "ADD_BOOKING":
             return { ...state, message: payload.message, bookings: state.bookings };
         case "FETCH_BOOKINGS":
-            console.warn(payload)
             return { ...state, bookings: payload };
         case "DELETE_BOOKING":
             return { ...state, message: payload.message };

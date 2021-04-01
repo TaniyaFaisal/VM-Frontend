@@ -1,4 +1,3 @@
-import Button from '@material-ui/core/Button';
 import MuiAlert from '@material-ui/lab/Alert';
 import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -17,13 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AlertMessage(message) {
+export default function AlertMessage(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
+  const [open, setOpen] = React.useState(true);
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -36,8 +31,8 @@ export default function AlertMessage(message) {
   return (
     <div className={classes.root}>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          {message}
+        <Alert onClose={handleClose} severity={props.message.includes("Successfully") ? "success" : "error"}>
+          {props.message}
         </Alert>
       </Snackbar>
     </div>
