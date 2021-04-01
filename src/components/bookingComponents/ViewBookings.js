@@ -22,8 +22,11 @@ class ViewBookings extends Component {
 
     componentDidMount() {
         const user = this.props.user;
-        if (user.roles.includes("ROLE_ADMIN")) { this.props.onFetchBookings() }
+        if (this.props.isLoggedIn) {
+            if (user.roles.includes("ROLE_ADMIN")) { this.props.onFetchBookings() }
         else { this.props.onFetchCustomerBookings(user.email) }
+        }
+        
     }
 
     componentDidUpdate(prevProps) {

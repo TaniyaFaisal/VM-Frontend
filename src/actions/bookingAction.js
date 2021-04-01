@@ -1,7 +1,5 @@
 import authHeader from "../services/auth-header";
 
-const user = JSON.parse(localStorage.getItem("user"));
- 
 export const _addBooking = (msg) => {
     return { type: "ADD_BOOKING", payload: { message: msg } }
 }
@@ -9,7 +7,7 @@ export const _addBooking = (msg) => {
 export const addBooking = (payload) => {
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json',  Authorization: "Bearer " + user.accessToken },
+        headers: authHeader(),
         body: JSON.stringify(payload)
     };
     return dispatch => {
