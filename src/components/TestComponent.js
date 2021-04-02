@@ -1,10 +1,10 @@
-import * as actions from '../../actions/bookingAction';
+import * as actions from '../actions/bookingAction';
 
 import { Button, Paper, Typography } from '@material-ui/core';
 import React, { Component } from 'react'
 
-import AlertMessage from '../AlertMessage';
-import { BookingNavBar } from "./BookingNavBar"
+import AlertMessage from './AlertMessage';
+import { BookingNavBar } from "./bookingComponents/BookingNavBar"
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Form from "react-validation/build/form";
 import Grid from '@material-ui/core/Grid';
@@ -34,7 +34,7 @@ const styles = (theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-}); class UpdateBooking extends Component {
+}); class TestComponent extends Component {
 
     constructor() {
         super();
@@ -242,5 +242,5 @@ const mapDispatchToState = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToState)(withStyles(styles)(UpdateBooking));
+export default connect(mapStateToProps, mapDispatchToState)(withStyles(styles)(TestComponent));
 
