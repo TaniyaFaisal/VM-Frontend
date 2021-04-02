@@ -1,5 +1,5 @@
 import { fade, makeStyles } from '@material-ui/core/styles';
-import { fetchCustomerByVtype, fetchCustomerByVehicleLocation, fetchCustomers } from "../../actions/customerAction"
+import { fetchCustomerByVehicleLocation, fetchCustomerByVtype, fetchCustomers } from "../../actions/customerAction"
 
 import AppBar from '@material-ui/core/AppBar';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 
 const options = ['Search', 'Vehicle Type', 'Vehicle Location'];
 
-export const CustomerNavBar = () => {
+export const CustomerNavBar = (isAdmin) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
@@ -136,6 +136,7 @@ export const CustomerNavBar = () => {
                     <Typography style={{ margin: "10px" }}><Link to="/viewCustomers" style={{ textDecoration: 'none', color: 'black' }}>View Customers</Link></Typography>
                     <Typography style={{ margin: "10px" }}><Link to="/addCustomer" style={{ textDecoration: 'none', color: 'black' }}>Add Customer</Link></Typography>
 
+                    {isAdmin ? <>
                     <div className={classes.search} style={{ marginLeft: 'auto' }}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -195,7 +196,7 @@ export const CustomerNavBar = () => {
                             </Popper>
                         </Grid>
                     </Grid>
-
+                    </> : <span></span>}
                 </Toolbar>
             </AppBar>
         </div>

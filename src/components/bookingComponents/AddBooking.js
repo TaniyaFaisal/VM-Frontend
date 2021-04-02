@@ -50,7 +50,6 @@ class AddBooking extends Component {
                 <Container maxWidth="sm" style={{ marginTop: 15 }}>
                     <Paper elevation={5} style={{ padding: 8, justifyContent: "center", display: "flex" }} >
                         <form>
-
                             <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Customer firstName</Typography>
                             <input type="text" ref={this.firstName} placeholder="Enter firstName" name="firstName" required /><br></br><br></br>
                             <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Customer lastName</Typography>

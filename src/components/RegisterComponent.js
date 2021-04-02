@@ -11,7 +11,6 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { connect } from "react-redux";
-import { isEmail } from "validator";
 import { register } from "../actions/auth";
 import { withStyles } from '@material-ui/core/styles';
 
@@ -44,82 +43,100 @@ const styles = (theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  error: {
+    color: '#cc0000',
+    marginBottom: 12,
+  }
 });
 
 
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
-
-const email = (value) => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid email.
-      </div>
-    );
-  }
-};
-
-const vusername = (value) => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The username must be between 3 and 20 characters.
-      </div>
-    );
-  }
-};
-
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
-      </div>
-    );
-  }
-};
-
-class Register extends Component {
+class TestComponent extends Component {
   constructor(props) {
     super(props);
-    this.handleRegister = this.handleRegister.bind(this);
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangeEmail = this.onChangeEmail.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-
     this.state = {
-      username: "",
-      email: "",
-      password: "",
       successful: false,
+      message: "",
+      fields: {},
+      errors: {}
     };
+    this.handleRegister = this.handleRegister.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
-  onChangeUsername(e) {
+  handleChange(e) {
+    let fields = this.state.fields;
+    fields[e.target.name] = e.target.value;
     this.setState({
-      username: e.target.value,
+      fields
     });
+
   }
 
-  onChangeEmail(e) {
-    this.setState({
-      email: e.target.value,
-    });
+  submitForm(e) {
+    console.warn("state1", this.state)
+    e.preventDefault();
+    if (this.validateForm()) {
+      console.log(this.state);
+      this.handleRegister(e);
+      this.setState({ fields: { ...this.state.fields, username: '', password: '', emailid: '' } })
+    }
+    
+
   }
 
-  onChangePassword(e) {
+  validateForm() {
+
+    let fields = { ...this.state.fields };
+    let errors = {};
+    let formIsValid = true;
+
+    if (!fields["username"]) {
+      formIsValid = false;
+      errors["username"] = "*Please enter your username.";
+    }
+
+    if (typeof fields["username"] !== "undefined") {
+      if (fields["username"].length < 3 || fields["username"].length > 20) {
+        formIsValid = false;
+        errors["username"] = "*The username must be between 3 and 20 characters.";
+      }
+    }
+
+    if (!fields["emailid"]) {
+      formIsValid = false;
+      errors["emailid"] = "*Please enter your email-ID.";
+    }
+
+    if (typeof fields["emailid"] !== "undefined") {
+      //regular expression for email validation
+      var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+      if (!pattern.test(fields["emailid"])) {
+        formIsValid = false;
+        errors["emailid"] = "*Please enter valid email-ID.";
+      }
+    }
+
+    if (!fields["password"]) {
+      formIsValid = false;
+      errors["password"] = "*Please enter your password.";
+    }
+
+    if (typeof fields["password"] !== "undefined") {
+      if (fields["password"].length < 6 || fields["password"].length > 20) {
+        formIsValid = false;
+        errors["password"] = "*The password must be between 6 and 20 characters.";
+      }
+    }
+
     this.setState({
-      password: e.target.value,
+      errors: errors
     });
+    return formIsValid;
+
+
   }
+
 
   handleRegister(e) {
     e.preventDefault();
@@ -127,13 +144,11 @@ class Register extends Component {
     this.setState({
       successful: false,
     });
-
-    this.form.validateAll();
-
+    console.warn("REGISTER", this.state.fields.username, this.state.fields.emailid, this.state.fields.password)
     if (this.checkBtn.context._errors.length === 0) {
       this.props
         .dispatch(
-          register(this.state.username, this.state.email, this.state.password)
+          register(this.state.fields.username, this.state.fields.emailid, this.state.fields.password)
         )
         .then(() => {
           this.setState({
@@ -166,86 +181,76 @@ class Register extends Component {
           </Typography>
 
             <Form
-              onSubmit={this.handleRegister}
-              ref={(c) => {
-                this.form = c;
-              }}
+              onSubmit={this.submitForm}
               className={classes.form}
             >
-              {!this.state.successful && (
-                <div>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="username"
-                    label="Username"
-                    name="username"
-                    autoComplete="username"
-                    autoFocus
-                    value={this.state.username}
-                    onChange={this.onChangeUsername}
-                    validations={[required, vusername]}
-                  />
+              <div>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
+                  autoFocus
+                  value={this.state.fields.username}
+                  onChange={this.handleChange}
+                />
+                <div className={classes.error}>{this.state.errors.username}</div>
 
 
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="emailid"
+                  label="EmailId"
+                  name="emailid"
+                  autoComplete="username"
+                  autoFocus
+                  value={this.state.fields.emailid}
+                  onChange={this.handleChange}
+                />
+                <div className={classes.error}>{this.state.errors.emailid}</div>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  value={this.state.fields.password}
+                  onChange={this.handleChange}
+                />
 
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email"
-                    name="email"
-                    autoComplete="username"
-                    autoFocus
-                    value={this.state.email}
-                    onChange={this.onChangeEmail}
-                    validations={[required, email]}
-                  />
-
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    value={this.state.password}
-                    onChange={this.onChangePassword}
-                    validations={[required, vpassword]}
-                  />
-
-
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    disabled={this.state.loading}
-                    className={classes.submit}
-                  >
-                    {this.state.loading && (
-                      <span className="spinner-border spinner-border-sm"></span>
-                    )}
+                <div className={classes.error}>{this.state.errors.password}</div>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  disabled={this.state.loading}
+                  className={classes.submit}
+                >
+                  {this.state.loading && (
+                    <span className="spinner-border spinner-border-sm"></span>
+                  )}
               Sign Up
             </Button>
-
-
-                  <Grid container>
-                    <Grid item>
-                      <a href="/login" >
-                        {"Already have an account? Sign In"}
-                      </a>
-                    </Grid>
+                <Grid container>
+                  <Grid item>
+                    <a href="/login" >
+                      {"Already have an account? Sign In"}
+                    </a>
                   </Grid>
-                </div>
-              )}
+                </Grid>
+              </div>
 
 
 
@@ -277,4 +282,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(Register));
+export default connect(mapStateToProps)(withStyles(styles)(TestComponent));

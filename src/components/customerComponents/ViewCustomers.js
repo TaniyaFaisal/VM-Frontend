@@ -36,14 +36,18 @@ class ViewCustomers extends Component {
 
     render() {
         const { isLoggedIn } = this.props;
-
+        const isAdmin = this.props.user.roles.includes("ROLE_ADMIN")
         if (!isLoggedIn) {
             return <Redirect to="/login" />;
+        }
+
+        if (!isAdmin) {
+            return <Redirect to="/dashboard" />;
         }
         return (
 
             <div>
-                <CustomerNavBar />
+                {isAdmin && <CustomerNavBar/>}
                 {this.state.displayAlert && <Alert variant="filled" severity={this.props.message.includes("Successfully") ? "success" : "error"} style={{ justifyContent: "center" }}>
                     {this.props.message}
                 </Alert>}

@@ -64,7 +64,7 @@ class App extends Component {
         <div>
           <AppBar position="static">
             <Toolbar>
-              <HomeIcon style={{ marginRight: "10px" }}/>
+              {/* <HomeIcon style={{ marginRight: "10px" }}/> */}
               <Typography variant="h6"><Link to={"/"} style={{ color: 'white' }}>
                 Vehicle Management Application
             </Link></Typography>
@@ -119,7 +119,6 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
-
               <Route path="/dashboard" component={Dashboard} />
               <Route path="/viewBooking"><ViewBookings /></Route>
               <Route path="/addBooking"><AddBooking /></Route>
