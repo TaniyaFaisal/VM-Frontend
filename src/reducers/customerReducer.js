@@ -20,6 +20,8 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, customers: payload };
         case "VIEW_CUSTOMER_VEHICLE_LOCATION":
             return { ...state, customers: payload };
+        case "VIEW_CUSTOMER_EMAIL":
+            return { ...state, customers: payload };
         default:
             return state
     }

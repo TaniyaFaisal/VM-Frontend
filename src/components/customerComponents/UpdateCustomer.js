@@ -91,4 +91,3 @@ const mapDispatchToState = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToState)(UpdateCustomer);
-

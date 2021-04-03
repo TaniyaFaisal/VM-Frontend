@@ -179,3 +179,28 @@ export const fetchCustomerByVehicleLocation = (payload) => {
     }
 }
 
+
+export const fetchByCustomer_Email = (payload) => {
+    return { type: "VIEW_CUSTOMER_EMAIL", payload: payload }
+}
+export const fetchByCustomerEmail = (payload) => {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    return dispatch => {
+        fetch('http://localhost:8081/api/v1/customerByCustomerEmail/'+payload, requestOptions)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log("Error");
+            }        
+        })
+        .then(data => {
+            dispatch(fetchByCustomer_Email(data));
+        }).catch(err=>{
+            console.warn(err)
+        })
+    }
+}

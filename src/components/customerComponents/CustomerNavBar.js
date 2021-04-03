@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 
 const options = ['Search', 'Vehicle Type', 'Vehicle Location'];
 
-export const CustomerNavBar = (isAdmin) => {
+export const CustomerNavBar = ({isAdmin}) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
