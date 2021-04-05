@@ -142,7 +142,6 @@ class TestComponent extends Component {
     this.setState({
       successful: false,
     });
-    console.warn("REGISTER", this.state.fields.username, this.state.fields.emailid, this.state.fields.password)
     if (this.checkBtn.context._errors.length === 0) {
       this.props
         .dispatch(

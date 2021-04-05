@@ -83,18 +83,17 @@ class UpdateBooking extends Component {
         let errors = {};
         let formIsValid = true;
         if (!fields["bookingDate"] || fields["bookingDate"] < today) {
-          formIsValid = false;
-          errors["bookingDate"] = "*Please enter valid booking date.";
-        }
-        if (!fields["bookedTillDate"]  || fields["bookedTillDate"] < today) {
             formIsValid = false;
-            errors["bookedTillDate"] = "*Please enter valid booking date.";
-        }
-          if (!fields["bookingDescription"]  ) {
-            formIsValid = false;
-            errors["bookingDescription"] = "*Please enter booking description.";
-        }
-        console.warn("DATE",fields["bookingDate"],new Date() )
+            errors["bookingDate"] = "*Please enter a valid booking date.";
+          }
+          if (!fields["bookedTillDate"]  || fields["bookedTillDate"] < today ) {
+              formIsValid = false;
+              errors["bookedTillDate"] = "*Please enter a valid booking till date.";
+          }
+          if (!fields["bookingDescription"]  || fields["bookingDescription"].length < 1) {
+              formIsValid = false;
+              errors["bookingDescription"] = "*Please enter booking description.";
+          }
         this.setState({
           errors: errors
         });

@@ -16,7 +16,7 @@ export const addBooking = (payload) => {
                 if (res.status === 201) {
                     dispatch(_addBooking("Successfully added booking!!"))
                 }else {
-                    dispatch(_addBooking("Adding booking failed!!"))
+                    dispatch(_addBooking("Adding booking failed!! Invalid customer name."))
                 }
                 setTimeout(() => {
                     dispatch(_addBooking(""));
@@ -148,6 +148,7 @@ export const fetchBookingByCustomer = (payload) => {
         })
     }
 }
+
 
 export const _fetchBookingByVehicle = (payload) => {
     return { type: "VIEW_BOOKING_VEHICLE", payload: payload }

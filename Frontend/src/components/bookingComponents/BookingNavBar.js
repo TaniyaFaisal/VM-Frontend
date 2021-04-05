@@ -92,21 +92,18 @@ export const BookingNavBar = ({isAdmin}) => {
                 }
             case "Customer name":
                 {
-                    console.info(`You clicked ${options[selectedIndex]}`);
                     searchText && dispatch(fetchBookingByCustomer(searchText));
                     setSearchText("")
                     break;
                 }
             case "Vehicle number":
                 {
-                    console.info(`You clicked ${options[selectedIndex]}`);
                     searchText && dispatch(fetchBookingByVehicle(searchText));
                     setSearchText("")
                     break;
                 }
             case "Booking date":
                 {
-                    console.info(`You clicked ${options[selectedIndex]}`);
                     searchText && dispatch(fetchBookingByDate(searchText));
                     setSearchText("")
                     break;

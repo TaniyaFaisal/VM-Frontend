@@ -53,19 +53,20 @@ class ViewBookings extends Component {
                 <TableContainer component={Paper}>
                     <Table aria-label="customized table">
                         <TableHead >
-                            <TableRow style={{ color: "#3f51b5", fontSize: 'medium' }}>
-                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: 'medium' }} >#</TableCell>
-                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: 'medium' }}>Customer Name</TableCell>
-                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: 'medium' }}>Vehicle Number</TableCell>
-                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: 'medium' }}>Booking Date</TableCell>
-                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: 'medium' }}>Booked Till Date</TableCell>
-                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: 'medium' }}>Booking Desc</TableCell>
-                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: 'medium' }}>Distance</TableCell>
-                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: 'medium' }}>Total Cost</TableCell>
-                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: 'medium' }}>Actions</TableCell>
+                            <TableRow style={{ color: "#3f51b5", fontSize: '0.875rem' }}>
+                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: '0.875rem' }} >#</TableCell>
+                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: '0.875rem' }}>Customer Name</TableCell>
+                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: '0.875rem' }}>Vehicle Number</TableCell>
+                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: '0.875rem' }}>Booking Date</TableCell>
+                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: '0.875rem' }}>Booked Till Date</TableCell>
+                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: '0.875rem' }}>Booking Desc</TableCell>
+                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: '0.875rem' }}>Distance</TableCell>
+                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: '0.875rem' }}>Total Cost</TableCell>
+                                <TableCell align="center" style={{ color: "#3f51b5", fontSize: '0.875rem' }}>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         {this.props && this.props.bookings && <TableBody>
+                            
                             {this.props.bookings.map((booking, i) => (
                                 <TableRow key={i}>
                                     <TableCell component="th" scope="row">
