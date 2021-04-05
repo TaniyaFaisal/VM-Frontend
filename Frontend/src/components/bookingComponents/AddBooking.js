@@ -1,11 +1,45 @@
 import * as actions from '../../actions/bookingAction'
 
-import { Button, Container, Paper, Typography } from '@material-ui/core';
+import { Button, Paper, Typography } from '@material-ui/core';
 import React, { Component } from 'react'
 
 import AlertMessage from '../AlertMessage';
 import { BookingNavBar } from "./BookingNavBar"
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Form from "react-validation/build/form";
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = (theme) => ({
+    root: {
+        height: '65vh',
+
+    }, 
+    paper: {
+        margin: theme.spacing(8, 4),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+        display: 'grid'
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+    error: {
+        color: '#cc0000',
+        marginBottom: 12,
+      }
+}); 
 
 class AddBooking extends Component {
 
@@ -20,56 +54,215 @@ class AddBooking extends Component {
         this.distance = React.createRef();
         this.customer = React.createRef();
         this.vehicle = React.createRef();
-        this.state = { message: '',displayAlert:''}
+        this.state = { message: '', booking: {}, bookings: {}, displayAlert: false, fields: {},errors: {} }
+        this.handleChange = this.handleChange.bind(this);
+        this.addBooking = this.addBooking.bind(this)
+        this.submitForm = this.submitForm.bind(this);
     }
+
+    handleChange(e) {
+        let fields = this.state.fields;
+        fields[e.target.name] = e.target.value;
+        this.setState({
+          fields
+        });
+    
+    }
+
+    submitForm(e) {
+        e.preventDefault();
+        if (this.validateForm()) {
+          this.addBooking(e);
+          this.setState({ fields: { ...this.state.fields} })
+        }
+      }
+    
+      validateForm() {
+          
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        let fields = { ...this.state.fields };
+        let errors = {};
+        let formIsValid = true;
+        if (!fields["firstName"]  || fields["firstName"].length < 3) {
+            formIsValid = false;
+            errors["firstName"] = "*The firstName must be between 3 and 20 characters.";
+        }
+        if (!fields["lastName"]  ) {
+            formIsValid = false;
+            errors["lastName"] = "*Please enter customer lastName.";
+        }
+        if (!fields["vehicleNumber"]  ) {
+            formIsValid = false;
+            errors["vehicleNumber"] = "*Please enter vehicleNumber.";
+        }
+        if (!fields["bookingDate"] || fields["bookingDate"] < today) {
+          formIsValid = false;
+          errors["bookingDate"] = "*Please enter a valid booking date.";
+        }
+        if (!fields["bookedTillDate"]  || fields["bookedTillDate"] < today ) {
+            formIsValid = false;
+            errors["bookedTillDate"] = "*Please enter a valid booking till date.";
+        }
+        if (!fields["bookingDescription"]  || fields["bookingDescription"].length < 3) {
+            formIsValid = false;
+            errors["bookingDescription"] = "*The bookingDescription must be between 3 and 20 characters.";
+        }
+        if (!fields["distance"] || fields["distance"] < 100 ) {
+            formIsValid = false;
+            errors["distance"] = "*The distance must be greater than 100.";
+        }
+        this.setState({
+          errors: errors
+        });
+        console.warn("ERRORS", errors)
+        return formIsValid;
+    
+    
+      }
+    
+    
 
     componentDidUpdate(prevProps) {
         if (this.props.message !== prevProps.message) {
-            this.props.message ? this.setState({ displayAlert: true }): this.setState({ displayAlert: false });
+            this.props.message ? this.setState({ displayAlert: true }) : this.setState({ displayAlert: false });
         }
     }
-    
 
     addBooking(event) {
         event.preventDefault();
         this.props.onAddBooking({
-            customer: { firstName: this.firstName.current.value, lastName: this.lastName.current.value },
-            vehicle: { vehicleNumber: this.vehicleNumber.current.value }, bookingDate: this.bookingDate.current.value,
-            bookedTillDate: this.bookedTillDate.current.value, bookingDescription: this.bookingDescription.current.value,
-            distance: this.distance.current.value
+            customer: { firstName: this.state.fields.firstName, lastName: this.state.fields.lastName },
+            vehicle: { vehicleNumber: this.state.fields.vehicleNumber }, bookingDate: this.state.fields.bookingDate,
+            bookedTillDate: this.state.fields.bookedTillDate, bookingDescription: this.state.fields.bookingDescription,
+            distance: this.state.fields.distance
         });
 
     }
 
-    render() { 
+    render() {
+        const { classes } = this.props;
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
         return (
-            <div>
-                 <BookingNavBar/>
-                {this.state.displayAlert && <AlertMessage message={this.props.message}/>}
+                <React.Fragment>
+                    <BookingNavBar />
+                    {this.state.displayAlert && <AlertMessage message={this.props.message} />}
+                    <br></br>
+                    <Grid container component="main" className={classes.root}>
+                        <CssBaseline />
+                        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{margin:'auto'}}>
+                            <div className={classes.paper}>
+                                <Typography component="h1" variant="h5" style={{color:'#3f51b5'}}>
+                                    Add Booking
+                                </Typography>
 
-                <Container maxWidth="sm" style={{ marginTop: 15 }}>
-                    <Paper elevation={5} style={{ padding: 8, justifyContent: "center", display: "flex" }} >
-                        <form>
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Customer firstName</Typography>
-                            <input type="text" ref={this.firstName} placeholder="Enter firstName" name="firstName" required /><br></br><br></br>
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Customer lastName</Typography>
-                            <input type="text" ref={this.lastName} placeholder="Enter lastName" name="lastName" required /><br></br><br></br>
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Vehicle Number</Typography>
-                            <input type="text" ref={this.vehicleNumber} placeholder="Enter vehicleNumber" name="vehicleNumber" required /><br></br><br></br>
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Booking Date</Typography>
-                            <input type="date" ref={this.bookingDate} placeholder="Enter bookingDate" name="bookingDate" required /><br></br><br></br>
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Booked Till Date</Typography>
-                            <input type="date" ref={this.bookedTillDate} placeholder="Enter bookedTillDate" name="bookedTillDate" required /><br></br><br></br>
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Booking description</Typography>
-                            <input type="text" ref={this.bookingDescription} placeholder="Enter booking description" name="bookingDescription" required /><br></br><br></br>
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Booking distance</Typography>
-                            <input type="text" ref={this.distance} placeholder="Enter distance" name="distance" required /><br></br><br></br>
-                            <Button style={{ align: "center" }} variant="contained" onClick={this.addBooking.bind(this)} color="primary">Add Booking</Button>
-                        </form>
-                    </Paper>
-                </Container>
-            </div>
-        )
+                                <Form
+                                    onSubmit={this.submitForm}
+                                    className={classes.form}
+                                >
+                                    <TextField
+                                        id="firstName"
+                                        label="Customer first Name"
+                                        name="firstName"
+                                        variant="outlined"
+                                        value={this.state.fields.firstName}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
+                                    <div className={classes.error}>{this.state.errors.firstName}</div>
+                                    <br></br><br></br>
+
+                                    <TextField
+                                        id="lastName"
+                                        label="Customer last Name"
+                                        name="lastName"
+                                        variant="outlined"
+                                        value={this.state.fields.lastName}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
+                                    <div className={classes.error}>{this.state.errors.lastName}</div>
+                                    <br></br><br></br>
+
+
+                                    <TextField
+                                        id="vehicleNumber"
+                                        label="Vehicle Number"
+                                        name="vehicleNumber"
+                                        variant="outlined"
+                                        value={this.state.fields.vehicleNumber}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
+                                    <div className={classes.error}>{this.state.errors.vehicleNumber}</div>
+                                    <br></br><br></br>
+
+                                    <TextField
+                                        required
+                                        name="bookingDate"
+                                        id="bookingDate"
+                                        label="Booking Date"
+                                        variant="outlined"
+                                        type="date"
+                                        defaultValue={today}
+                                        value={this.state.fields.bookingDate}
+                                        onChange={this.handleChange}
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookingDate}</div>
+                                    <br></br><br></br>
+
+                                    <TextField
+                                        required
+                                        name="bookedTillDate"
+                                        id="bookedTillDate"
+                                        label="Booking Till Date"
+                                        variant="outlined"
+                                        type="date"
+                                        defaultValue={today}
+                                        value={this.state.fields.bookedTillDate}
+                                        onChange={this.handleChange}
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookedTillDate}</div>
+                                    <br></br><br></br>
+
+                                    <TextField
+                                        required
+                                        name="bookingDescription"
+                                        id="bookingDescription"
+                                        label="Booking description"
+                                        variant="outlined"
+                                        value={this.state.fields.bookingDescription}
+                                        onChange={this.handleChange}
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookingDescription}</div>
+                                    <br></br><br></br>
+
+                                    <TextField
+                                        id="distance"
+                                        label="Booking distance"
+                                        name="distance"
+                                        value={this.state.fields.distance}
+                                        onChange={this.handleChange}
+                                        required
+                                        variant="outlined"
+                                    />
+                                    <div className={classes.error}>{this.state.errors.distance}</div>
+                                    <br></br><br></br>
+                                    
+                                    <Button  type="submit" style={{ align: "center" }} variant="contained"  color="primary">Add Booking</Button>
+
+                                </Form>
+                            </div>
+                        </Grid>
+                    </Grid>
+                    </React.Fragment>)
     }
 }
 
@@ -85,5 +278,5 @@ const mapDispatchToState = (dispatch) => {
     }
 }
 
+export default connect(mapStateToProps, mapDispatchToState)(withStyles(styles)(AddBooking));
 
-export default connect(mapStateToProps, mapDispatchToState)(AddBooking);

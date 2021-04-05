@@ -74,10 +74,8 @@ class TestComponent extends Component {
   }
 
   submitForm(e) {
-    console.warn("state1", this.state)
     e.preventDefault();
     if (this.validateForm()) {
-      console.log(this.state);
       this.handleRegister(e);
       this.setState({ fields: { ...this.state.fields, username: '', password: '', emailid: '' } })
     }

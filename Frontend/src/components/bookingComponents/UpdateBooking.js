@@ -30,11 +30,18 @@ const styles = (theme) => ({
     form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
+        display: 'grid'
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-}); class UpdateBooking extends Component {
+    error: {
+        color: '#cc0000',
+        marginBottom: 12,
+      }
+}); 
+
+class UpdateBooking extends Component {
 
     constructor() {
         super();
@@ -66,15 +73,20 @@ const styles = (theme) => ({
       }
     
       validateForm() {
-
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
         let fields = { ...this.state.fields };
+        
         let errors = {};
         let formIsValid = true;
-        if (!fields["bookingDate"] ) {
+        if (!fields["bookingDate"] || fields["bookingDate"] < today) {
           formIsValid = false;
           errors["bookingDate"] = "*Please enter valid booking date.";
         }
-        if (!fields["bookedTillDate"]  ) {
+        if (!fields["bookedTillDate"]  || fields["bookedTillDate"] < today) {
             formIsValid = false;
             errors["bookedTillDate"] = "*Please enter valid booking date.";
         }
@@ -82,7 +94,7 @@ const styles = (theme) => ({
             formIsValid = false;
             errors["bookingDescription"] = "*Please enter booking description.";
         }
-    
+        console.warn("DATE",fields["bookingDate"],new Date() )
         this.setState({
           errors: errors
         });
@@ -131,9 +143,9 @@ const styles = (theme) => ({
                         <CssBaseline />
                         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{margin:'auto'}}>
                             <div className={classes.paper}>
-                                <Typography component="h1" variant="h5">
-                                    Update Booking
-                                </Typography>
+                                    <Typography component="h1" variant="h5" style={{color:'#3f51b5'}}>
+                                        Update Booking
+                                    </Typography>
 
                                 <Form
                                     onSubmit={this.submitForm}
@@ -171,7 +183,9 @@ const styles = (theme) => ({
                                         defaultValue={today}
                                         value={this.state.fields.bookingDate}
                                         onChange={this.handleChange}
-                                    /><br></br><br></br>
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookingDate}</div>
+                                    <br></br><br></br>
 
                                     <TextField
                                         required
@@ -183,7 +197,9 @@ const styles = (theme) => ({
                                         defaultValue={today}
                                         value={this.state.fields.bookedTillDate}
                                         onChange={this.handleChange}
-                                    /><br></br><br></br>
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookedTillDate}</div>
+                                    <br></br><br></br>
 
                                     <TextField
                                         required
@@ -193,7 +209,9 @@ const styles = (theme) => ({
                                         variant="outlined"
                                         value={this.state.fields.bookingDescription}
                                         onChange={this.handleChange}
-                                    /><br></br><br></br>
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookingDescription}</div>
+                                    <br></br><br></br>
 
                                     <TextField
                                         id="outlined-disabled"

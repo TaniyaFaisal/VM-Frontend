@@ -28,8 +28,8 @@ class DetailViewBooking extends Component {
                     <BookingNavBar />
                     <h2 style={{color: '#3f51b5', align: 'center',  justifyContent: "center", display: "flex" }}>Detailed View Of Booking</h2>
                     <Container maxWidth="lg" style={{ marginTop: 15 }}>
-                    <Paper elevation={5} style={{ padding: 8, justifyContent: "center", display: "flex" }} >
-                    <TableContainer component={Paper}>
+                    <Paper elevation={5} style={{ padding: 8, justifyContent: "center", display: "flex" }} >  
+                    <TableContainer component={Paper} style={{ padding: 50}}>
                         <Table aria-label="customized table">
                             <TableBody>
                                 <TableRow><TableCell align="left">

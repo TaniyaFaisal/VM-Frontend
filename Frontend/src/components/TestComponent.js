@@ -30,21 +30,33 @@ const styles = (theme) => ({
     form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
+        display: 'grid'
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
-}); class TestComponent extends Component {
+    error: {
+        color: '#cc0000',
+        marginBottom: 12,
+      }
+}); 
+
+class TestComponent extends Component {
 
     constructor() {
         super();
+        this.firstName = React.createRef();
+        this.lastName = React.createRef();
+        this.vehicleNumber = React.createRef();
         this.bookingDate = React.createRef();
         this.bookedTillDate = React.createRef();
         this.bookingDescription = React.createRef();
-        this.state = { message: '', booking: {}, bookings: {}, displayAlert: false, fields: {},
-        errors: {} }
+        this.distance = React.createRef();
+        this.customer = React.createRef();
+        this.vehicle = React.createRef();
+        this.state = { message: '', booking: {}, bookings: {}, displayAlert: false, fields: {},errors: {} }
         this.handleChange = this.handleChange.bind(this);
-        this.updateBooking = this.updateBooking.bind(this)
+        this.addBooking = this.addBooking.bind(this)
         this.submitForm = this.submitForm.bind(this);
     }
 
@@ -60,41 +72,59 @@ const styles = (theme) => ({
     submitForm(e) {
         e.preventDefault();
         if (this.validateForm()) {
-          this.updateBooking(e);
-          this.setState({ fields: { ...this.state.fields, bookingDate: '', bookedTillDate: '', bookingDescription: '' } })
+          this.addBooking(e);
+          this.setState({ fields: { ...this.state.fields} })
         }
       }
     
       validateForm() {
-
+          
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
         let fields = { ...this.state.fields };
+        console.warn("fields['firstName']", fields["firstName"])
         let errors = {};
         let formIsValid = true;
-        if (!fields["bookingDate"] ) {
+        if (!fields["firstName"]  || fields["firstName"].length < 3) {
+            formIsValid = false;
+            errors["firstName"] = "*The firstName must be between 3 and 20 characters.";
+        }
+        if (!fields["lastName"]  ) {
+            formIsValid = false;
+            errors["lastName"] = "*Please enter customer lastName.";
+        }
+        if (!fields["vehicleNumber"]  ) {
+            formIsValid = false;
+            errors["vehicleNumber"] = "*Please enter vehicleNumber.";
+        }
+        if (!fields["bookingDate"] || fields["bookingDate"] < today) {
           formIsValid = false;
           errors["bookingDate"] = "*Please enter valid booking date.";
         }
-        if (!fields["bookedTillDate"]  ) {
+        if (!fields["bookedTillDate"]  || fields["bookedTillDate"] < today) {
             formIsValid = false;
-            errors["bookedTillDate"] = "*Please enter valid booking date.";
+            errors["bookedTillDate"] = "*Please enter valid booking till date.";
         }
-          if (!fields["bookingDescription"]  ) {
+        if (!fields["bookingDescription"]  || fields["bookingDescription"].length < 3) {
             formIsValid = false;
-            errors["bookingDescription"] = "*Please enter booking description.";
+            errors["bookingDescription"] = "*The bookingDescription must be between 3 and 20 characters.";
         }
-    
+        if (!fields["distance"] || fields["distance"] < 100 ) {
+            formIsValid = false;
+            errors["distance"] = "*The distance must be greater than 100.";
+        }
         this.setState({
           errors: errors
         });
+        console.warn("ERRORS", errors)
         return formIsValid;
     
     
       }
     
-      
-    componentDidMount() {
-        this.props.onFetchBookingByID(this.props.match.params.id);
-    }
 
     componentDidUpdate(prevProps) {
         if (this.props.message !== prevProps.message) {
@@ -102,27 +132,25 @@ const styles = (theme) => ({
         }
     }
 
-    updateBooking(event) {
+    addBooking(event) {
         event.preventDefault();
-        this.props.onUpdateBooking({
-            bookingId: this.props.match.params.id, bookingDate: this.state.fields.bookingDate,
-            bookedTillDate: this.state.fields.bookedTillDate, bookingDescription: this.state.fields.bookingDescription
-        })
+        this.props.onAddBooking({
+            customer: { firstName: this.state.fields.firstName, lastName: this.state.fields.lastName },
+            vehicle: { vehicleNumber: this.state.fields.vehicleNumber }, bookingDate: this.state.fields.bookingDate,
+            bookedTillDate: this.state.fields.bookedTillDate, bookingDescription: this.state.fields.bookingDescription,
+            distance: this.state.fields.distance
+        });
+
     }
 
     render() {
         const { classes } = this.props;
-        let { booking } = this.props;
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
-        booking = booking.bookingId ? booking : false
         return (
-            !booking ?
-                <div>Loading</div>
-                :
                 <React.Fragment>
                     <BookingNavBar />
                     {this.state.displayAlert && <AlertMessage message={this.props.message} />}
@@ -132,7 +160,7 @@ const styles = (theme) => ({
                         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{margin:'auto'}}>
                             <div className={classes.paper}>
                                 <Typography component="h1" variant="h5">
-                                    Update Booking
+                                    Add Booking
                                 </Typography>
 
                                 <Form
@@ -140,26 +168,41 @@ const styles = (theme) => ({
                                     className={classes.form}
                                 >
                                     <TextField
-                                        id="outlined-read-only-input"
-                                        label="Customer Name"
-                                        defaultValue={booking.customer.firstName + ' ' + booking.customer.lastName}
-                                        InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        id="firstName"
+                                        label="Customer first Name"
+                                        name="firstName"
                                         variant="outlined"
-                                        disabled
-                                    /><br></br><br></br>
+                                        value={this.state.fields.firstName}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
+                                    <div className={classes.error}>{this.state.errors.firstName}</div>
+                                    <br></br><br></br>
 
                                     <TextField
-                                        id="outlined-read-only-input"
-                                        label="Vehicle Number"
-                                        defaultValue={booking.vehicle.vehicleNumber}
-                                        InputProps={{
-                                            readOnly: true,
-                                        }}
+                                        id="lastName"
+                                        label="Customer last Name"
+                                        name="lastName"
                                         variant="outlined"
-                                        disabled
-                                    /><br></br><br></br>
+                                        value={this.state.fields.lastName}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
+                                    <div className={classes.error}>{this.state.errors.lastName}</div>
+                                    <br></br><br></br>
+
+
+                                    <TextField
+                                        id="vehicleNumber"
+                                        label="Vehicle Number"
+                                        name="vehicleNumber"
+                                        variant="outlined"
+                                        value={this.state.fields.vehicleNumber}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
+                                    <div className={classes.error}>{this.state.errors.vehicleNumber}</div>
+                                    <br></br><br></br>
 
                                     <TextField
                                         required
@@ -171,7 +214,9 @@ const styles = (theme) => ({
                                         defaultValue={today}
                                         value={this.state.fields.bookingDate}
                                         onChange={this.handleChange}
-                                    /><br></br><br></br>
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookingDate}</div>
+                                    <br></br><br></br>
 
                                     <TextField
                                         required
@@ -183,7 +228,9 @@ const styles = (theme) => ({
                                         defaultValue={today}
                                         value={this.state.fields.bookedTillDate}
                                         onChange={this.handleChange}
-                                    /><br></br><br></br>
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookedTillDate}</div>
+                                    <br></br><br></br>
 
                                     <TextField
                                         required
@@ -193,31 +240,23 @@ const styles = (theme) => ({
                                         variant="outlined"
                                         value={this.state.fields.bookingDescription}
                                         onChange={this.handleChange}
-                                    /><br></br><br></br>
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookingDescription}</div>
+                                    <br></br><br></br>
 
                                     <TextField
-                                        id="outlined-disabled"
+                                        id="distance"
                                         label="Booking distance"
-                                        defaultValue={booking.distance}
-                                        InputProps={{
-                                            readOnly: true,
-                                        }}
-                                        disabled
+                                        name="distance"
+                                        value={this.state.fields.distance}
+                                        onChange={this.handleChange}
+                                        required
                                         variant="outlined"
-                                    /><br></br><br></br>
-
-                                    <TextField
-                                        id="outlined-read-only-input"
-                                        label="Total Cost"
-                                        defaultValue={booking.totalCost}
-                                        InputProps={{
-                                            readOnly: true,
-                                        }}
-                                        disabled
-                                        variant="outlined"
-                                    /><br></br><br></br>
-
-                                    <Button  type="submit" style={{ align: "center" }} variant="contained"  color="primary">Update Booking</Button>
+                                    />
+                                    <div className={classes.error}>{this.state.errors.distance}</div>
+                                    <br></br><br></br>
+                                    
+                                    <Button  type="submit" style={{ align: "center" }} variant="contained"  color="primary">Add Booking</Button>
 
                                 </Form>
                             </div>
@@ -229,16 +268,13 @@ const styles = (theme) => ({
 
 const mapStateToProps = (state) => {
     return {
-        message: state.bookingsData.message,
-        booking: state.bookingsData.booking,
-        bookings: state.bookingsData.bookings
+        message: state.bookingsData.message
     }
 }
 
 const mapDispatchToState = (dispatch) => {
     return {
-        onUpdateBooking: (payload) => dispatch(actions.updateBooking(payload)),
-        onFetchBookingByID: (payload) => dispatch(actions.fetchBookingByID(payload)),
+        onAddBooking: (payload) => dispatch(actions.addBooking(payload))
     }
 }
 
