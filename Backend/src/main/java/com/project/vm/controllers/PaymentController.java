@@ -156,8 +156,8 @@ public class PaymentController {
 	@ApiOperation(value = "Calculate MonthlyRevenue by localdates", notes = "Provide LocalDates", response = Payment.class)
 	public ResponseEntity<Double> calculateTMonthlyRevenue(
 			@ApiParam(value = "localDate1 to calculate TotalPayment ", required = true)@PathVariable("date1") 
-	@DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate  date1,@ApiParam(value = "localDate2 to calculate TotalPayment ", required = true) @PathVariable("date2") 
-	@DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate  date2) {
+			@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate  date1,@ApiParam(value = "localDate2 to calculate TotalPayment ", required = true) @PathVariable("date2") 
+			@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate  date2) {
 		Double revenue = paymentService.calculateMonthlyRevenue(date1,date2);
 		return new ResponseEntity<>(revenue,HttpStatus.OK);
 	}

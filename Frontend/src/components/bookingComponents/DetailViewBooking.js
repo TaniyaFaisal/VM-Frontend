@@ -27,11 +27,11 @@ class DetailViewBooking extends Component {
                 <div>
                     <BookingNavBar />
                     <Container maxWidth="lg" style={{ marginTop: 15 }}>
-                    <Paper elevation={5} style={{ padding: 8, justifyContent: "center", display: "flex" , flexDirection:"column", alignItems: 'center'}} > 
+                    <Paper elevation={6} style={{ padding: 8, justifyContent: "center", display: "flex" , flexDirection:"column", alignItems: 'center'}} > 
                     <Typography component="h1" variant="h5" style={{color:'#3f51b5', padding:10 }}>
                                 Detailed View Of Booking
                                 </Typography> 
-                    <TableContainer component={Paper} style={{ padding: 25}}>
+                    <TableContainer style={{ padding: 25,}}>
                         <Table aria-label="customized table">
                             <TableBody>
                                  <TableRow style={{borderBottom: '2px solid #3f51b5'}}><TableCell align="left" style={{ color: "#3f51b5"}}>

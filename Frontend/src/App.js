@@ -13,7 +13,6 @@ import DetailViewCustomer from './components/customerComponents/DetailViewCustom
 import Login from "./components/LoginComponent";
 import Profile from "./components/ProfileComponent";
 import Register from "./components/RegisterComponent";
-import TestComponent from './components/TestComponent';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import UpdateBooking from "./components/bookingComponents/UpdateBooking";
@@ -116,7 +115,6 @@ class App extends Component {
           <div className="container mt-3">
             <Switch>
               <Route exact path={["/", "/home"]} component={Login} />
-              <Route exact path="/test" component={TestComponent} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />

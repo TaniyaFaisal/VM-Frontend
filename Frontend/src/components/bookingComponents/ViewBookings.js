@@ -50,7 +50,7 @@ class ViewBookings extends Component {
                 <BookingNavBar isAdmin={this.props.user.roles.includes("ROLE_ADMIN")}/>
                 {this.state.displayAlert && <AlertMessage message={this.props.message}/>}
                 <br></br><br></br>
-                <TableContainer component={Paper}>
+                <TableContainer component={Paper} elevation={6}>
                     <Table aria-label="customized table">
                         <TableHead >
                             <TableRow style={{ color: "#3f51b5", fontSize: '0.875rem' }}>
