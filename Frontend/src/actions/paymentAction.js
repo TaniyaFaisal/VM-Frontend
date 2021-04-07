@@ -201,3 +201,29 @@ export const fetchTotalRevenue = (payload) => {
         })
     }
 }
+
+export const _fetchPaymentByCustomerEmail = (payload) => {
+    return { type: "VIEW_PAYMENT_CUSTOMER_EMAIL", payload: payload }
+}
+
+export const fetchPaymentByCustomerEmail = (payload) => {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    return dispatch => {
+        fetch('http://localhost:8081/api/v1/paymentsByCustomerEmail/'+payload, requestOptions)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log("Error");
+            }        
+        })
+        .then(data => {
+            dispatch(_fetchPaymentByCustomerEmail(data));
+        }).catch(err=>{
+            console.warn(err)
+        })
+    }
+}

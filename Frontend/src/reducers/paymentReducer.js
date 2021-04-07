@@ -2,7 +2,7 @@ const initialState = {
     message: '',
     payments: [],
     payment: [],
-    revenue:null
+    revenue: null
 }
 
 const paymentReducer = (state = initialState, { type, payload }) => {
@@ -10,7 +10,7 @@ const paymentReducer = (state = initialState, { type, payload }) => {
         case "ADD_PAYMENT":
             return { ...state, message: payload.message, payments: state.payments };
         case "FETCH_PAYMENTS":
-            console.warn("PAYLOAD",payload)
+            console.warn("PAYLOAD", payload)
             return { ...state, payments: payload };
         case "DELETE_PAYMENT":
             return { ...state, message: payload.message };
@@ -22,8 +22,10 @@ const paymentReducer = (state = initialState, { type, payload }) => {
             return { ...state, payments: payload };
         case "VIEW_PAYMENT_REVENUE":
             return { ...state, payments: payload };
-            case "VIEW_PAYMENT_TOTALREVENUE":
-            return { ...state, revenue : payload};
+        case "VIEW_PAYMENT_TOTALREVENUE":
+            return { ...state, revenue: payload };
+        case "VIEW_PAYMENT_CUSTOMER_EMAIL":
+            return { ...state, payments : payload };
         default:
             return state
     }

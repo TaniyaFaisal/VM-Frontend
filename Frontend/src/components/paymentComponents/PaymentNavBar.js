@@ -132,10 +132,10 @@ export const PaymentNavBar = ({isAdmin}) => {
                     <Typography style={{ margin: "10px" }}><Link to="/viewPayment" style={{ color: 'black' }}>Manage Payments</Link></Typography>
                     <Typography style={{ margin: "10px" }}><Link to="/viewPayment" style={{ textDecoration: 'none', color: 'black' }}>View Payments</Link></Typography>
                     <Typography style={{ margin: "10px" }}><Link to="/addPayment" style={{ textDecoration: 'none', color: 'black' }}>Add Payment</Link></Typography>
-                    <Typography style={{ margin: "10px" }}><Link to="/viewTotalRevenue" style={{ textDecoration: 'none', color: 'black' }}>Total Revenue</Link></Typography>
+                    {isAdmin ? <><Typography style={{ margin: "10px" }}><Link to="/viewTotalRevenue" style={{ textDecoration: 'none', color: 'black' }}>Total Revenue</Link></Typography>
 
                    
-                    {isAdmin ? <> <div className={classes.search} style={{ marginLeft: 'auto' }}>
+                     <div className={classes.search} style={{ marginLeft: 'auto' }}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>

@@ -24,6 +24,7 @@ class ViewPayments extends Component {
         const user = this.props.user;
         if (this.props.isLoggedIn) {
             if (user.roles.includes("ROLE_ADMIN")) { this.props.onFetchPayments() }
+            else { this.props.onFetchCustomerPayments(user.email) }
         }
 
     }
@@ -109,7 +110,8 @@ const mapDispatchToState = (dispatch) => {
     return {
         onFetchPayments: () => dispatch(actions.fetchPayments()),
         onDeletePayment: (id) => dispatch(actions.deletePayment(id)),
-        onUpdateAlertMessage: (msg) => dispatch(actions._deletePayment(msg))
+        onUpdateAlertMessage: (msg) => dispatch(actions._deletePayment(msg)),
+        onFetchCustomerPayments : (email) => dispatch(actions.fetchPaymentByCustomerEmail(email))
     }
 }
 

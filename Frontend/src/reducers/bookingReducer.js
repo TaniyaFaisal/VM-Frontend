@@ -19,10 +19,10 @@ const bookingReducer = (state = initialState, { type, payload }) => {
         case "VIEW_BOOKING_CUSTOMER":
             return { ...state, bookings: payload, message: payload.message };
         case "VIEW_BOOKING_VEHICLE":
-            return { ...state, bookings: payload , message: payload.message};
+            return { ...state, bookings: payload, message: payload.message };
         case "VIEW_BOOKING_DATE":
-            return { ...state, bookings: payload , message: payload.message};
-            case "VIEW_BOOKING_CUSTOMER_EMAIL":
+            return { ...state, bookings: payload, message: payload.message };
+        case "VIEW_BOOKING_CUSTOMER_EMAIL":
             return { ...state, bookings: payload };
         default:
             return state
