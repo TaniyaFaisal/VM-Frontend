@@ -3,6 +3,7 @@ import bookingReducer from "./bookingReducer";
 import { combineReducers } from "redux";
 import customerReducer from "./customerReducer";
 import message from "./message";
+import paymentReducer from "./paymentReducer";
 import vehicleReducer from "./vehicleReducer";
 
 export default combineReducers({
@@ -10,5 +11,6 @@ export default combineReducers({
   message,
   bookingsData:bookingReducer,
   customersData:customerReducer,
-  vehiclesData: vehicleReducer
+  vehiclesData: vehicleReducer,
+  paymentsData: paymentReducer
 });

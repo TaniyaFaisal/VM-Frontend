@@ -6,19 +6,25 @@ import React, { Component } from "react";
 
 import AddBooking from "./components/bookingComponents/AddBooking";
 import AddCustomer from './components/customerComponents/AddCustomer';
+import AddPayment from './components/paymentComponents/AddPayment';
+import AddUser from "./components/userComponents/AddUser"
 import AppBar from '@material-ui/core/AppBar';
 import Dashboard from "./components/Dashboard";
 import DetailViewBooking from "./components/bookingComponents/DetailViewBooking";
 import DetailViewCustomer from './components/customerComponents/DetailViewCustomer';
+import DetailViewPayment from './components/paymentComponents/DetailViewPayment';
 import Login from "./components/LoginComponent";
 import Profile from "./components/ProfileComponent";
 import Register from "./components/RegisterComponent";
 import Toolbar from '@material-ui/core/Toolbar';
+import TotalRevenue from './components/paymentComponents/TotalRevenue';
 import Typography from '@material-ui/core/Typography';
 import UpdateBooking from "./components/bookingComponents/UpdateBooking";
 import UpdateCustomer from './components/customerComponents/UpdateCustomer';
+import UserList from "./components/userComponents/UserList"
 import ViewBookings from "./components/bookingComponents/ViewBookings";
 import ViewCustomers from './components/customerComponents/ViewCustomers';
+import ViewPayments from './components/paymentComponents/ViewPayments';
 import { clearMessage } from "./actions/message";
 import { connect } from "react-redux";
 import { history } from './helpers/history';
@@ -69,7 +75,7 @@ class App extends Component {
             </Link></Typography>
 
               {showAdminBoard && <Typography style={{ margin: "10px" }}>
-                <Link to={"/dashboard"} style={{ color: 'white' }}>Users</Link></Typography>}
+                <Link to={"/users"} style={{ color: 'white' }}>Users</Link></Typography>}
               <Typography style={{ margin: "10px" }}>
                 <Link to={"/viewCustomers"} style={{ color: 'white' }}>Customers</Link></Typography>
               <Typography style={{ margin: "10px" }}>
@@ -77,7 +83,7 @@ class App extends Component {
               <Typography style={{ margin: "10px" }}>
                 <Link to={"/dashboard"} style={{ color: 'white' }}>Vehicles</Link></Typography>
               <Typography style={{ margin: "10px" }}>
-                <Link to={"/dashboard"} style={{ color: 'white' }}>Payments</Link></Typography>
+                <Link to={"/viewPayment"} style={{ color: 'white' }}>Payments</Link></Typography>
 
 
 
@@ -116,6 +122,8 @@ class App extends Component {
             <Switch>
               <Route exact path={["/", "/home"]} component={Login} />
               <Route exact path="/login" component={Login} />
+              <Route path="/users" component={UserList}></Route>
+              <Route path="/add-user/:id" component={AddUser}></Route>
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
               <Route path="/dashboard" component={Dashboard} />
@@ -127,6 +135,10 @@ class App extends Component {
               <Route path="/addCustomer"><AddCustomer /></Route>
               <Route path="/updateCustomer/:id" component={UpdateCustomer} />
               <Route path="/detailViewCustomer/:id" component={DetailViewCustomer} />
+              <Route path="/viewPayment"><ViewPayments /></Route>
+              <Route path="/addPayment"><AddPayment /></Route>
+              <Route path="/viewTotalRevenue"><TotalRevenue /></Route>
+              <Route path="/detailViewPayment/:id" component={DetailViewPayment} />
             </Switch>
           </div>
         </div>
