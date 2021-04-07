@@ -8,6 +8,7 @@ import { BookingNavBar } from "./BookingNavBar"
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Form from "react-validation/build/form";
 import Grid from '@material-ui/core/Grid';
+import { Link } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -16,7 +17,7 @@ const styles = (theme) => ({
     root: {
         height: '65vh',
 
-    }, 
+    },
     paper: {
         margin: theme.spacing(8, 4),
         display: 'flex',
@@ -38,8 +39,8 @@ const styles = (theme) => ({
     error: {
         color: '#cc0000',
         marginBottom: 12,
-      }
-}); 
+    }
+});
 
 class UpdateBooking extends Component {
 
@@ -48,8 +49,10 @@ class UpdateBooking extends Component {
         this.bookingDate = React.createRef();
         this.bookedTillDate = React.createRef();
         this.bookingDescription = React.createRef();
-        this.state = { message: '', booking: {}, bookings: {}, displayAlert: false, fields: {},
-        errors: {} }
+        this.state = {
+            message: '', booking: {}, bookings: {}, displayAlert: false, fields: {},
+            errors: {}
+        }
         this.handleChange = this.handleChange.bind(this);
         this.updateBooking = this.updateBooking.bind(this)
         this.submitForm = this.submitForm.bind(this);
@@ -59,50 +62,50 @@ class UpdateBooking extends Component {
         let fields = this.state.fields;
         fields[e.target.name] = e.target.value;
         this.setState({
-          fields
+            fields
         });
-    
+
     }
 
     submitForm(e) {
         e.preventDefault();
         if (this.validateForm()) {
-          this.updateBooking(e);
-          this.setState({ fields: { ...this.state.fields, bookingDate: '', bookedTillDate: '', bookingDescription: '' } })
+            this.updateBooking(e);
+            this.setState({ fields: { ...this.state.fields, bookingDate: '', bookedTillDate: '', bookingDescription: '' } })
         }
-      }
-    
-      validateForm() {
+    }
+
+    validateForm() {
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
         let fields = { ...this.state.fields };
-        
+
         let errors = {};
         let formIsValid = true;
         if (!fields["bookingDate"] || fields["bookingDate"] < today) {
             formIsValid = false;
             errors["bookingDate"] = "*Please enter a valid booking date.";
-          }
-          if (!fields["bookedTillDate"]  || fields["bookedTillDate"] < today ) {
-              formIsValid = false;
-              errors["bookedTillDate"] = "*Please enter a valid booking till date.";
-          }
-          if (!fields["bookingDescription"]  || fields["bookingDescription"].length < 1) {
-              formIsValid = false;
-              errors["bookingDescription"] = "*Please enter booking description.";
-          }
+        }
+        if (!fields["bookedTillDate"] || fields["bookedTillDate"] < today) {
+            formIsValid = false;
+            errors["bookedTillDate"] = "*Please enter a valid booking till date.";
+        }
+        if (!fields["bookingDescription"] || fields["bookingDescription"].length < 1) {
+            formIsValid = false;
+            errors["bookingDescription"] = "*Please enter booking description.";
+        }
         this.setState({
-          errors: errors
+            errors: errors
         });
         return formIsValid;
-    
-    
-      }
-    
-      
+
+
+    }
+
+
     componentDidMount() {
         this.props.onFetchBookingByID(this.props.match.params.id);
     }
@@ -140,10 +143,10 @@ class UpdateBooking extends Component {
                     <br></br>
                     <Grid container component="main" className={classes.root}>
                         <CssBaseline />
-                        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{margin:'auto'}}>
+                        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{ margin: 'auto' }}>
                             <div className={classes.paper}>
-                                    <Typography component="h1" variant="h5" style={{color:'#3f51b5'}}>
-                                        Update Booking
+                                <Typography component="h1" variant="h5" style={{ color: '#3f51b5' }}>
+                                    Update Booking
                                     </Typography>
 
                                 <Form
@@ -233,14 +236,17 @@ class UpdateBooking extends Component {
                                         disabled
                                         variant="outlined"
                                     /><br></br><br></br>
+                                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
 
-                                    <Button  type="submit" style={{ align: "center" }} variant="contained"  color="primary">Update Booking</Button>
-
+                                        <Button type="submit" style={{ align: "center", width:'100%', margin: 2 }} variant="contained" color="primary">Update Booking</Button>
+                                        <Button style={{ align: "center" , width:'100%', margin: 2}} variant="contained" color="primary">
+                                            <Link to={"/viewBooking"} style={{ textDecoration: 'none', color: 'white' }}>  Cancel  </Link></Button>
+                                    </div>
                                 </Form>
                             </div>
                         </Grid>
                     </Grid>
-                    </React.Fragment>)
+                </React.Fragment>)
     }
 }
 

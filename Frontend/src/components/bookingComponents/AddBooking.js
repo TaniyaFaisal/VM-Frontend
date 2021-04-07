@@ -9,6 +9,7 @@ import { BookingNavBar } from "./BookingNavBar"
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Form from "react-validation/build/form";
 import Grid from '@material-ui/core/Grid';
+import { Link } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { fetchVehicles } from '../../actions/vehicleAction';
@@ -269,8 +270,11 @@ class AddBooking extends Component {
                                 />
                                 <div className={classes.error}>{this.state.errors.distance}</div>
                                 <br></br><br></br>
-
-                                <Button type="submit" style={{ align: "center" }} variant="contained" color="primary">Add Booking</Button>
+                                <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>  
+                                <Button type="submit" style={{ align: "center", width:'100%', margin: 2 }} variant="contained" color="primary">Add Booking</Button>
+                                <Button style={{ align: "center", width:'100%', margin: 2 }} variant="contained" color="primary">
+                                <Link to={"/viewBooking"} style={{ textDecoration: 'none', color: 'white' }}>Cancel</Link></Button>
+                                </div> 
 
                             </Form>
                         </div>

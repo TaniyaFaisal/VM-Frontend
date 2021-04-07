@@ -1,5 +1,8 @@
 package com.project.vm.controllers;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.vm.entities.User;
 import com.project.vm.exceptions.NotAUserException;
+import com.project.vm.exceptions.NotFoundException;
 import com.project.vm.services.UserService;
 
 import io.swagger.annotations.Api;
@@ -36,19 +41,20 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
+	
 	/**
 	 * This method is for updating a user by Response Body of User
 	 * @return String
 	 * @throws NotFoundException
 	 * 
 	 */
-	@PutMapping("/users") 
+	@PutMapping("/users/{id}") 
 	@ApiOperation(value = "Updte User email by the response body", notes = "Provide username and new email", response = User.class)
 	@PreAuthorize("hasRole('ADMIN') or hasRole('CUSTOMER')")
 	@Transactional
-	public ResponseEntity<User> updateUser(@RequestBody User u) 
+	public ResponseEntity<User> updateUser(@PathVariable("id") Integer id,@RequestBody User u) 
 	{
-		User user = userService.updateUser(u); 
+		User user = userService.updateUser(id,u); 
 		return new ResponseEntity<>(user,HttpStatus.CREATED);
 	}
 
@@ -76,12 +82,35 @@ public class UserController {
 	 * 
 	 */
 
+//	@GetMapping("/users")
+//	@PreAuthorize("hasRole('ADMIN')")
+//	@ApiOperation(value = "Validating a user by user details", notes = "Provide user details", response = User.class)
+//	public ResponseEntity<User> validateUser(@ApiParam(value = "Users to be validated", required = true) @RequestBody User user){
+//		User u = userService.validateUser(user); 
+//		return new ResponseEntity<>(u,HttpStatus.OK);
+//	}
+	
 	@GetMapping("/users")
 	@PreAuthorize("hasRole('ADMIN')")
-	@ApiOperation(value = "Validating a user by user details", notes = "Provide user details", response = User.class)
-	public ResponseEntity<User> validateUser(@ApiParam(value = "Users to be validated", required = true) @RequestBody User user){
-		User u = userService.validateUser(user); 
-		return new ResponseEntity<>(u,HttpStatus.OK);
+	@ApiOperation(value = "View all users", response = User.class)
+	public List<User> viewUsers() {
+		List<User> user = userService.viewUsers();
+		return user;
+	}
+	
+	@PostMapping("/users")
+	@PreAuthorize("hasRole('ADMIN')")
+	public User addUser(@RequestBody User user) {
+		userService.addUser(user);
+		return user;
+	}
+
+	@GetMapping("/users/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public Optional<User> getUserById(@PathVariable("id") Integer id) {
+		Optional<User> user = userService.getUserById(id);
+		return user;
+
 	}
 
 }

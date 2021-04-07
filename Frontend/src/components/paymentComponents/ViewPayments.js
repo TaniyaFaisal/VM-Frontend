@@ -33,7 +33,6 @@ class ViewPayments extends Component {
         if (this.props.message !== prevProps.message) {
             this.props.message ? this.setState({ displayAlert: true }) : this.setState({ displayAlert: false });
         }
-        console.warn("Props", this.props)
     }
 
     deletePayment(id) {

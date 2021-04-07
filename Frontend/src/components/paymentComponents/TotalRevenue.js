@@ -25,13 +25,10 @@ class TotalRevenue extends Component{
 
     fetchTotalRevenue(event) {
         event.preventDefault();
-        console.warn("VALUES",this.paymentDate1, this.paymentDate2)
-        var result = 
         this.props.onfetchTotalRevenue({
             paymentDate1: this.paymentDate1.current.value,
             paymentDate2: this.paymentDate2.current.value
         });
-        console.warn(result)
     }
 
     render() { 

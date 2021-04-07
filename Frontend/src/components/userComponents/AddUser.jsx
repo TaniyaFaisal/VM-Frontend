@@ -1,6 +1,7 @@
 import { Button, Container, Paper, Typography } from '@material-ui/core';
 import React, { Component } from 'react'
 
+import UserNavBar from "./UserNavBar";
 import UserService from '../../services/UserService';
 
 class AddUser extends Component {
@@ -39,7 +40,6 @@ class AddUser extends Component {
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
         let user = {username: this.state.username, email: this.state.email, password: this.state.password};
-        console.log('user => ' + JSON.stringify(user));
 
         // step 5
         if(this.state.id === '_add'){
@@ -77,7 +77,7 @@ class AddUser extends Component {
     render() { 
         return (
             <div>
-                 
+                 <UserNavBar/>
                 <Container maxWidth="sm" style={{ marginTop: 20 }}>
                     <Paper elevation={5} style={{ padding: 8, justifyContent: "center", display: "flex" }} >
                     <div className = "card col-md-6 offset-md-3 offset-md-3">

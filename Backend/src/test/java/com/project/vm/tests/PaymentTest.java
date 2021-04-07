@@ -73,8 +73,8 @@ class PaymentTest {
 
 	@Test
 	void testCalculateTotalPayment() {
-		double totalPayment = paymentService.calculateTotalPayment(vehicle);
-		System.out.println(totalPayment);
+//		double totalPayment = paymentService.calculateTotalPayment(vehicle);
+//		System.out.println(totalPayment);
 	}
 
 }

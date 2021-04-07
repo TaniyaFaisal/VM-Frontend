@@ -20,9 +20,12 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer>{
 	@Query("select p from  Payment p inner join p.booking b  where b.vehicle = ?1")
 	public List<Payment> findPaymentByVehicle(Vehicle vehicle);
 	
-	@Query("select sum(b.totalCost) from  Payment p inner join p.booking b where b.vehicle = ?1")
-    public double findTotalPaymentByVehicle(Vehicle vehicle);
+	@Query("select sum(b.totalCost) from  Payment p inner join p.booking b where b.vehicle.vehicleNumber = ?1")
+    public double findTotalPaymentByVehicle(String vehicleNumber);
 	
 	@Query("select sum(b.totalCost) from  Payment p inner join p.booking b where p.paymentDate >= ?1 and p.paymentDate <= ?2")
     public double findTotalPaymentByDates(LocalDate d1, LocalDate d2);
+
+	@Query("select p from  Payment p inner join p.booking b inner join b.customer c where c.emailId =  ?1")
+	public List<Payment> findByCustomerEmail(String email);
 }

@@ -27,8 +27,6 @@ class AddPayment extends Component {
 
     addPayment(event) {
         event.preventDefault();
-        console.warn("VALUES",this.bookingId,this.paymentMode
-        ,this.paymentStatus, this.paymentDate)
         this.props.onaddPayment({
             booking:{ bookingId: this.bookingId.current.value},
             paymentMode: this.paymentMode.current.value,

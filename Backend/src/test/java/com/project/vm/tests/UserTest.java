@@ -18,8 +18,8 @@ class UserTest {
 		User user = new User();
 		user.setUsername("Raj");
 		user.setEmail("rak@gmail.com");
-		User u = userService.updateUser(user);
-		System.out.print(u);
+//		User u = userService.updateUser(user);
+//		System.out.print(u);
 	}
 
 //	@Test

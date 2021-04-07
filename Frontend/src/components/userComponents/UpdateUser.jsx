@@ -29,8 +29,6 @@ class UpdateUser extends Component {
     updateUser = (e) => {
         e.preventDefault();
         let user = {username: this.state.username, email: this.state.email,password: this.state.password};
-        console.log('user => ' + JSON.stringify(user));
-        console.log('id => ' + JSON.stringify(this.state.id));
         UserService.updateUser(user, this.state.id).then( res => {
             this.props.history.push('/users');
         });

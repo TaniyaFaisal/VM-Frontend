@@ -62,7 +62,6 @@ export const deletePayment = (paymentId) => {
                     dispatch(fetchPayments())
                     dispatch(_deletePayment("Successfully deleted payment!!"))
                 }else {
-                    console.log("RES", res)
                     dispatch(_deletePayment("Payment cannot be deleted after booking"))
                 }
                 setTimeout(() => {
@@ -156,10 +155,10 @@ export const _fetchTotalPaymentByVehicle = (payload) => {
 export const fetchTotalPaymentByVehicle = (payload) => {
     const requestOptions = {
         method: 'GET',
-        headers: authHeader()
+        headers: authHeader(),
     };
     return dispatch => {
-        fetch('http://localhost:8081/api/v1/paymentsByVehicle'+payload, requestOptions)
+        fetch('http://localhost:8081/api/v1/totalPaymentByVehicle/'+payload.vehicleId   , requestOptions)
         .then(res => {
             if (res.status === 200) {
                 return res.json();
@@ -180,7 +179,6 @@ export const _fetchTotalRevenue = (payload) => {
 }
 
 export const fetchTotalRevenue = (payload) => {
-    console.log("PAYLOD", payload)
     const requestOptions = {
         method: 'GET',
         headers: authHeader()

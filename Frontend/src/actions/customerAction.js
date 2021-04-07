@@ -37,11 +37,9 @@ export const fetchCustomers = () => {
     return dispatch => {
         fetch('http://localhost:8081/api/v1/customers', requestOptions)
             .then(res => {
-                console.log(res);
                 return res.json();
             })
             .then(data => {
-                console.log(data);
                 dispatch(fetchcustomers(data));
             })
     }
@@ -64,7 +62,6 @@ export const deleteCustomer = (customerId) => {
                     dispatch(fetchCustomers())
                     dispatch(removeCustomer("Successfully deleted customer !!!"))
                 }else {
-                    console.log("RES", res)
                     dispatch(removeCustomer("Customer not deleted"))
                 }
                 setTimeout(() => {
@@ -88,7 +85,6 @@ export const updateCustomer = (payload) => {
     return dispatch => {
         fetch('http://localhost:8081/api/v1/customers/', requestOptions)
             .then(res => {
-                console.log(res)
                 if (res.status === 202) {
                     dispatch(editCustomer("Successfully updated customer !!!"));
                 }else {

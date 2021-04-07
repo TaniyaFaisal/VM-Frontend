@@ -136,7 +136,7 @@ export const BookingNavBar = ({isAdmin}) => {
         <div className={classes.root}>
             <AppBar position="static" style={{ backgroundColor: 'ghostwhite ', color: 'black' }}>
                 <Toolbar>
-                    <Typography style={{ margin: "10px" }}><Link to="/viewBooking" style={{ color: 'black' }}>Manage Bookings</Link></Typography>
+                    <Typography style={{ margin: "10px" }}><Link to="/viewBooking" style={{ color: 'black' }}><b>Manage Bookings</b></Link></Typography>
                     <Typography style={{ margin: "10px" }}><Link to="/viewBooking" style={{ textDecoration: 'none', color: 'black' }}>View Bookings</Link></Typography>
                     <Typography style={{ margin: "10px" }}><Link to="/addBooking" style={{ textDecoration: 'none', color: 'black' }}>Add Booking</Link></Typography>
 

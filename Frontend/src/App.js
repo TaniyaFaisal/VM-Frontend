@@ -17,6 +17,7 @@ import Login from "./components/LoginComponent";
 import Profile from "./components/ProfileComponent";
 import Register from "./components/RegisterComponent";
 import Toolbar from '@material-ui/core/Toolbar';
+import TotalPaymentByVehicle from './components/paymentComponents/TotalPaymentByVehicle';
 import TotalRevenue from './components/paymentComponents/TotalRevenue';
 import Typography from '@material-ui/core/Typography';
 import UpdateBooking from "./components/bookingComponents/UpdateBooking";
@@ -139,6 +140,7 @@ class App extends Component {
               <Route path="/addPayment"><AddPayment /></Route>
               <Route path="/viewTotalRevenue"><TotalRevenue /></Route>
               <Route path="/detailViewPayment/:id" component={DetailViewPayment} />
+              <Route path="/viewTotalPaymentByVehicle"><TotalPaymentByVehicle /></Route>
             </Switch>
           </div>
         </div>

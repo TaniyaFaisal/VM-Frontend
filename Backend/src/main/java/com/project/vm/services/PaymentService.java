@@ -76,12 +76,20 @@ public class PaymentService implements IPaymentService{
 	}
 
 	@Override
-	public double calculateTotalPayment(Vehicle vehicle) {
-		return paymentRepository.findTotalPaymentByVehicle(vehicle);
+	public double calculateTotalPayment(String vehicleNumber) {
+		return paymentRepository.findTotalPaymentByVehicle(vehicleNumber);
 	}
 	
 	public List<Payment> viewPayments(){	
 		List<Payment> payments = paymentRepository.findAll();
+		if(payments.isEmpty()) {
+			throw new NotFoundException("No payments found");
+		}
+		return payments;
+	}
+	
+	public List<Payment> viewPaymentsByCustomerEmail(String email){
+		List<Payment> payments = paymentRepository.findByCustomerEmail(email);
 		if(payments.isEmpty()) {
 			throw new NotFoundException("No payments found");
 		}

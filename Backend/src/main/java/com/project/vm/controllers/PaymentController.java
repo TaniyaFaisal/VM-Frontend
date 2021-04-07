@@ -30,7 +30,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/api/v1")
 @Api(value = "Payment", tags = { "PaymentAPI" })
@@ -72,7 +72,7 @@ public class PaymentController {
 	 * 
 	 */
 	@DeleteMapping("/payments/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN')")
 	@ApiOperation(value = "Delete a payment", notes = "Provide payment id", response = Payment.class)
 	public ResponseEntity<String> cancelPayment(
 			@ApiParam(value = "ID value of the payment to be deleted", required = true)@PathVariable("id") int id) {
@@ -134,12 +134,12 @@ public class PaymentController {
 	 * @throws NotFoundException
 	 * 
 	 */
-	@GetMapping("/totalPaymentByVehicle")
+	@GetMapping("/totalPaymentByVehicle/{vehicleNumber}")
 	@PreAuthorize("hasRole('ADMIN')")
 	@ApiOperation(value = "Calculate TotalPayment by vehicle", notes = "Provide vehicle number", response = Payment.class)
 	public ResponseEntity<Double> calculateTotalPaymentByVehicle(
-			@ApiParam(value = "Vehicle number to calculate TotalPayment ", required = true)	@RequestBody Vehicle vehicle) {
-		Double revenue = paymentService.calculateTotalPayment(vehicle);
+			@ApiParam(value = "Vehicle number to calculate TotalPayment ", required = true)	@PathVariable("vehicleNumber") String vehicleNumber) {
+		Double revenue = paymentService.calculateTotalPayment(vehicleNumber);
 		return new ResponseEntity<>(revenue,HttpStatus.OK);
 	}
 	
@@ -161,4 +161,13 @@ public class PaymentController {
 		Double revenue = paymentService.calculateMonthlyRevenue(date1,date2);
 		return new ResponseEntity<>(revenue,HttpStatus.OK);
 	}
+	
+	@GetMapping("/paymentsByCustomerEmail/{email}")
+	@PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN')")
+	@ApiOperation(value = "View booking by customer email", notes = "Provide customer email", response = Payment.class)
+	public ResponseEntity<List<Payment>> viewBookingByCustomerEmail(
+			@ApiParam(value = "Email id to view booking", required = true) @PathVariable("email") String email) {
+		List<Payment> bookings = paymentService.viewPaymentsByCustomerEmail(email);
+		return new ResponseEntity<>(bookings,HttpStatus.OK);
+	} 
 }
