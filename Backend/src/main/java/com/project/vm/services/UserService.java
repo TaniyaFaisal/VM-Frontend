@@ -81,9 +81,9 @@ public class UserService implements IUserService{
 					user.getEmail(),
 					 encoder.encode(user.getPassword()));
 			Set<Role> roles = new HashSet<>();
-			Role modRole = roleRepository.findByName(ERole.ROLE_CUSTOMER)
+			Role userRole = roleRepository.findByName(ERole.ROLE_CUSTOMER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-			roles.add(modRole);
+			roles.add(userRole);
 			newUser.setRoles(roles);
 			userRepository.save(newUser);
 			
