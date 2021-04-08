@@ -137,10 +137,11 @@ class UpdateBooking extends Component {
             !booking ?
                 <div>Loading</div>
                 :
-                <React.Fragment>
+                <div className="container-fluid " style={{ marginTop: "1rem " }}>
                     <BookingNavBar />
                     {this.state.displayAlert && <AlertMessage message={this.props.message} />}
                     <br></br>
+                    <div className="container mt-3">
                     <Grid container component="main" className={classes.root}>
                         <CssBaseline />
                         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{ margin: 'auto' }}>
@@ -246,7 +247,8 @@ class UpdateBooking extends Component {
                             </div>
                         </Grid>
                     </Grid>
-                </React.Fragment>)
+                    </div>
+                </div>)
     }
 }
 

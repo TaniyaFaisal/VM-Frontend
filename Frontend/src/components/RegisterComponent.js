@@ -165,6 +165,7 @@ class TestComponent extends Component {
     const { classes } = this.props;
 
     return (
+      <div className="container mt-3 ">
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -268,6 +269,7 @@ class TestComponent extends Component {
           </div>
         </Grid>
       </Grid>
+      </div>
     );
   }
 }

@@ -19,7 +19,7 @@ const styles = (theme) => ({
     root: {
         height: '65vh',
 
-    }, 
+    },
     paper: {
         margin: theme.spacing(8, 4),
         display: 'flex',
@@ -41,8 +41,8 @@ const styles = (theme) => ({
     error: {
         color: '#cc0000',
         marginBottom: 12,
-      }
-}); 
+    }
+});
 
 class AddBooking extends Component {
 
@@ -165,122 +165,125 @@ class AddBooking extends Component {
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
         return (
-            <React.Fragment>
+            <div className="container-fluid " style={{ marginTop: "1rem " }}>
                 <BookingNavBar />
                 {this.state.displayAlert && <AlertMessage message={this.props.message} />}
                 <br></br>
-                <Grid container component="main" className={classes.root}>
-                    <CssBaseline />
-                    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{ margin: 'auto' }}>
-                        <div className={classes.paper}>
-                            <Typography component="h1" variant="h5">
-                                Add Booking
+                <div className="container mt-3">
+
+                    <Grid container component="main" className={classes.root} >
+                        <CssBaseline />
+                        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={{ margin: 'auto' }}>
+                            <div className={classes.paper} >
+                                <Typography component="h1" variant="h5" style={{ color: "#3f51b5", fontWeight: 'bold', marginBottom: '5px' }}>
+                                    Add Booking
                                 </Typography>
 
-                            <Form
-                                onSubmit={this.submitForm}
-                                className={classes.form}
-                            >
-                                <TextField
-                                    id="firstName"
-                                    label="Customer first Name"
-                                    name="firstName"
-                                    variant="outlined"
-                                    value={this.state.fields.firstName}
-                                    onChange={this.handleChange}
-                                    required
-                                />
-                                <div className={classes.error}>{this.state.errors.firstName}</div>
-                                <br></br><br></br>
+                                <Form
+                                    onSubmit={this.submitForm}
+                                    className={classes.form}
+                                >
+                                    <TextField
+                                        id="firstName"
+                                        label="Customer first Name"
+                                        name="firstName"
+                                        variant="outlined"
+                                        value={this.state.fields.firstName}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
+                                    <div className={classes.error}>{this.state.errors.firstName}</div>
+                                    <br></br><br></br>
 
-                                <TextField
-                                    id="lastName"
-                                    label="Customer last Name"
-                                    name="lastName"
-                                    variant="outlined"
-                                    value={this.state.fields.lastName}
-                                    onChange={this.handleChange}
-                                    required
-                                />
-                                <div className={classes.error}>{this.state.errors.lastName}</div>
-                                <br></br><br></br>
+                                    <TextField
+                                        id="lastName"
+                                        label="Customer last Name"
+                                        name="lastName"
+                                        variant="outlined"
+                                        value={this.state.fields.lastName}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
+                                    <div className={classes.error}>{this.state.errors.lastName}</div>
+                                    <br></br><br></br>
 
-                                <Autocomplete
-                                    id="vehicle"
-                                    label="Vehicle"
-                                    name="vehicle"
-                                    options={allVehicles?allVehicles:null}
-                                    getOptionLabel={(option) => `${option.type} - ${option.location} - ${option.vehicleNumber}`}
-                                    renderInput={(params) => <TextField {...params} label="Vehicle" required variant="outlined" />}
-                                    onChange={(event, vehicleDetails) => {
-                                        this.handleChange(null, vehicleDetails.vehicleNumber);
-                                    }}
-                                />
-                                <div className={classes.error}>{this.state.errors.vehicleNumber}</div>
-                                <br></br><br></br>
+                                    <Autocomplete
+                                        id="vehicle"
+                                        label="Vehicle"
+                                        name="vehicle"
+                                        options={allVehicles ? allVehicles : null}
+                                        getOptionLabel={(option) => `${option.type} - ${option.location} - ${option.vehicleNumber}`}
+                                        renderInput={(params) => <TextField {...params} label="Vehicle" required variant="outlined" />}
+                                        onChange={(event, vehicleDetails) => {
+                                            this.handleChange(null, vehicleDetails.vehicleNumber);
+                                        }}
+                                    />
+                                    <div className={classes.error}>{this.state.errors.vehicleNumber}</div>
+                                    <br></br><br></br>
 
-                                <TextField
-                                    required
-                                    name="bookingDate"
-                                    id="bookingDate"
-                                    label="Booking Date"
-                                    variant="outlined"
-                                    type="date"
-                                    defaultValue={today}
-                                    value={this.state.fields.bookingDate}
-                                    onChange={this.handleChange}
-                                />
-                                <div className={classes.error}>{this.state.errors.bookingDate}</div>
-                                <br></br><br></br>
+                                    <TextField
+                                        required
+                                        name="bookingDate"
+                                        id="bookingDate"
+                                        label="Booking Date"
+                                        variant="outlined"
+                                        type="date"
+                                        defaultValue={today}
+                                        value={this.state.fields.bookingDate}
+                                        onChange={this.handleChange}
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookingDate}</div>
+                                    <br></br><br></br>
 
-                                <TextField
-                                    required
-                                    name="bookedTillDate"
-                                    id="bookedTillDate"
-                                    label="Booking Till Date"
-                                    variant="outlined"
-                                    type="date"
-                                    defaultValue={today}
-                                    value={this.state.fields.bookedTillDate}
-                                    onChange={this.handleChange}
-                                />
-                                <div className={classes.error}>{this.state.errors.bookedTillDate}</div>
-                                <br></br><br></br>
+                                    <TextField
+                                        required
+                                        name="bookedTillDate"
+                                        id="bookedTillDate"
+                                        label="Booking Till Date"
+                                        variant="outlined"
+                                        type="date"
+                                        defaultValue={today}
+                                        value={this.state.fields.bookedTillDate}
+                                        onChange={this.handleChange}
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookedTillDate}</div>
+                                    <br></br><br></br>
 
-                                <TextField
-                                    required
-                                    name="bookingDescription"
-                                    id="bookingDescription"
-                                    label="Booking description"
-                                    variant="outlined"
-                                    value={this.state.fields.bookingDescription}
-                                    onChange={this.handleChange}
-                                />
-                                <div className={classes.error}>{this.state.errors.bookingDescription}</div>
-                                <br></br><br></br>
+                                    <TextField
+                                        required
+                                        name="bookingDescription"
+                                        id="bookingDescription"
+                                        label="Booking description"
+                                        variant="outlined"
+                                        value={this.state.fields.bookingDescription}
+                                        onChange={this.handleChange}
+                                    />
+                                    <div className={classes.error}>{this.state.errors.bookingDescription}</div>
+                                    <br></br><br></br>
 
-                                <TextField
-                                    id="distance"
-                                    label="Booking distance"
-                                    name="distance"
-                                    value={this.state.fields.distance}
-                                    onChange={this.handleChange}
-                                    required
-                                    variant="outlined"
-                                />
-                                <div className={classes.error}>{this.state.errors.distance}</div>
-                                <br></br><br></br>
-                                <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>  
-                                <Button type="submit" style={{ align: "center", width:'100%', margin: 2 }} variant="contained" color="primary">Add Booking</Button>
-                                <Button style={{ align: "center", width:'100%', margin: 2 }} variant="contained" color="primary">
-                                <Link to={"/viewBooking"} style={{ textDecoration: 'none', color: 'white' }}>Cancel</Link></Button>
-                                </div> 
+                                    <TextField
+                                        id="distance"
+                                        label="Booking distance"
+                                        name="distance"
+                                        value={this.state.fields.distance}
+                                        onChange={this.handleChange}
+                                        required
+                                        variant="outlined"
+                                    />
+                                    <div className={classes.error}>{this.state.errors.distance}</div>
+                                    <br></br><br></br>
+                                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                                        <Button type="submit" style={{ align: "center", width: '100%', margin: 2 }} variant="contained" color="primary">Add Booking</Button>
+                                        <Button style={{ align: "center", width: '100%', margin: 2 }} variant="contained" color="primary">
+                                            <Link to={"/viewBooking"} style={{ textDecoration: 'none', color: 'white' }}>  Cancel  </Link></Button>
+                                    </div>
 
-                            </Form>
-                        </div>
+                                </Form>
+                            </div>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </React.Fragment>)
+                </div>
+            </div>)
     }
 }
 

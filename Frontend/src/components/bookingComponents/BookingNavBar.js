@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const options = ['Search', 'Customer name', 'Vehicle number', 'Booking date'];
+const options = ['Search', 'Customer name', 'Vehicle number', 'Booking date','View All'];
 
 export const BookingNavBar = ({isAdmin}) => {
     const classes = useStyles();
@@ -106,6 +106,11 @@ export const BookingNavBar = ({isAdmin}) => {
                 {
                     searchText && dispatch(fetchBookingByDate(searchText));
                     setSearchText("")
+                    break;
+                }
+            case "View All":
+                {
+                    dispatch(fetchBookings());
                     break;
                 }
             default:

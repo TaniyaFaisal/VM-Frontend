@@ -120,7 +120,8 @@ class Login extends Component {
       return <Redirect to="/profile" />;
     }
 
-    return (
+    return ( 
+      <div className="container mt-3 ">
       <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image}/>
@@ -210,6 +211,7 @@ class Login extends Component {
         </div>
       </Grid>
       </Grid>
+      </div>
     );
   }
 }

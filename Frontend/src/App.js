@@ -23,6 +23,7 @@ import Typography from '@material-ui/core/Typography';
 import UpdateBooking from "./components/bookingComponents/UpdateBooking";
 import UpdateCustomer from './components/customerComponents/UpdateCustomer';
 import UserList from "./components/userComponents/UserList"
+import ViewActiveBooking from './components/activeBookingComponents/viewActiveBooking'
 import ViewBookings from "./components/bookingComponents/ViewBookings";
 import ViewCustomers from './components/customerComponents/ViewCustomers';
 import ViewPayments from './components/paymentComponents/ViewPayments';
@@ -85,6 +86,8 @@ class App extends Component {
                 <Link to={"/dashboard"} style={{ color: 'white' }}>Vehicles</Link></Typography>
               <Typography style={{ margin: "10px" }}>
                 <Link to={"/viewPayment"} style={{ color: 'white' }}>Payments</Link></Typography>
+                {showAdminBoard &&   <Typography style={{ margin: "10px" }}>
+                <Link to={"/viewActiveBooking"} style={{ color: 'white' }}>Active Bookings</Link></Typography>}
 
 
 
@@ -119,7 +122,7 @@ class App extends Component {
             </Toolbar>
           </AppBar>
 
-          <div className="container mt-3">
+          <div>
             <Switch>
               <Route exact path={["/", "/home"]} component={Login} />
               <Route exact path="/login" component={Login} />
@@ -141,6 +144,7 @@ class App extends Component {
               <Route path="/viewTotalRevenue"><TotalRevenue /></Route>
               <Route path="/detailViewPayment/:id" component={DetailViewPayment} />
               <Route path="/viewTotalPaymentByVehicle"><TotalPaymentByVehicle /></Route>
+              <Route path="/viewActiveBooking"><ViewActiveBooking /></Route>
             </Switch>
           </div>
         </div>

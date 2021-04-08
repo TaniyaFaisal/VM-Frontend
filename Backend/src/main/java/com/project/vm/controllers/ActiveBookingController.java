@@ -41,7 +41,7 @@ public class ActiveBookingController {
 	@GetMapping("/activeBookings/{date}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<List<Booking>> viewActiveBookingByBookingDate(@PathVariable("date") 
-    @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate  date) {
+	@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate  date) {
 		List<Booking> bookings =  activeBookingService.viewActiveBookingByBookingDate(date);
 		return new ResponseEntity<>(bookings,HttpStatus.OK);
 	}
@@ -49,8 +49,8 @@ public class ActiveBookingController {
 	@GetMapping("/activeBookings/{from}/{to}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<List<Booking>> viewActiveBookingBetweenDates(@PathVariable("from") 
-    @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate  from, @PathVariable("to") 
-    @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate  to) {
+	@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate  from, @PathVariable("to") 
+	@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate  to) {
 		List<Booking> bookings =  activeBookingService.viewActiveBookingBetweenDates(from, to);
 		return new ResponseEntity<>(bookings,HttpStatus.OK);
 	}
