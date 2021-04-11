@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 
 import Alert from '@material-ui/lab/Alert';
 import { CustomerNavBar } from "./CustomerNavBar"
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
 class UpdateCustomer extends Component {
@@ -53,22 +54,31 @@ class UpdateCustomer extends Component {
                     <Container maxWidth="sm" style={{ marginTop: 15 }}>
                         <Paper elevation={5} style={{ padding: 8, justifyContent: "center", display: "flex" }} >
                             <form>
+                                <br></br>
+                                <h4><b><u>UPDATE CUSTOMER EMAIL ID</u></b></h4>
+                                <br></br><br></br>
                                 <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Customer Name</Typography>
-                                <input type="text" disabled value={customer.firstName + ' ' + customer.lastName} name="customerName" /><br></br><br></br>
-                                {/* <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Vehicle Number</Typography>
-                                <input type="text" disabled value={booking.vehicle.vehicleNumber} name="vehicleNumber" /><br></br><br></br> */}
+                                <input type="text" disabled value={customer.firstName + ' ' + customer.lastName} name="customerName" 
+                                style = {{
+                                    width: '100%',
+                                    padding: '12px 20px',
+                                    margin: '8px 0',
+                                    borderRadius: '4px',
+                                    boxSizing: 'border-box'}}
+                                    /><br></br><br></br>
                                 <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Email Id</Typography>
-                                <input type="text" ref={this.emailId} placeholder="Enter EmailId" name="emailId" required /><br></br><br></br>
-                                {/* <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Booked Till Date</Typography>
-                                <input type="date" ref={this.bookedTillDate} placeholder="Enter bookedTillDate" name="bookedTillDate" required /><br></br><br></br>
-                                <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Booking description</Typography>
-                                <input type="text" ref={this.bookingDescription} placeholder="Enter booking description" name="bookingDescription" required pattern=".*\S.*" /><br></br><br></br>
-                                <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Booking distance</Typography>
-                                <input type="text" disabled value={booking.distance} name="distance" /><br></br><br></br>
-                                <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Total Cost</Typography>
-                                <input type="text" disabled value={booking.totalCost} name="totalCost" /><br></br><br></br> */}
-                                <Button style={{ align: "center" }} variant="contained" onClick={this.updateCustomer.bind(this)} color="primary">Update Customer</Button>
-                            </form>
+                                <input type="text" ref={this.emailId} placeholder="Enter EmailId" name="emailId" required 
+                                style = {{
+                                    width: '100%',
+                                    padding: '12px 20px',
+                                    margin: '8px 0',
+                                    borderRadius: '4px',
+                                    boxSizing: 'border-box'}}
+                                    /><br></br><br></br>
+                                <Button style={{ align: "center" ,  width:'100%'}} variant="contained" onClick={this.updateCustomer.bind(this)} color="primary">Update Customer</Button>
+                                <Button style={{ align: "center" , width:'100%', margin: 4}} variant="contained" color="primary">
+                                    <Link to={"/viewCustomers"} style={{ textDecoration: 'none', color: 'white' }}>  Cancel  </Link></Button>
+                                    </form>
                         </Paper>
                     </Container>
                 </div>)

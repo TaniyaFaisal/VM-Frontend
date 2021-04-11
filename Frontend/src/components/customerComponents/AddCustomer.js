@@ -1,11 +1,14 @@
 import * as actions from '../../actions/customerAction'
 
-import { Button, Container, Paper, Typography } from '@material-ui/core';
+import { Button, Container, Paper, Typography, } from '@material-ui/core';
 import React, { Component } from 'react'
 
-import Alert from '@material-ui/lab/Alert';
+import AlertMessage from '../AlertMessage';
 import { CustomerNavBar } from "./CustomerNavBar"
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+
+// By passing it to connect, our component receives it as a prop, and it will automatically dispatch the action when it’s called.
 
 class AddCustomer extends Component {
 
@@ -42,25 +45,64 @@ class AddCustomer extends Component {
         return (
             <div>
                  <CustomerNavBar/>
-                {this.state.displayAlert &&  <Alert variant="filled" severity="success" style={{justifyContent:"center"}}>
+                 {this.state.displayAlert && <AlertMessage message={this.props.message} />}
                     {this.props.message}
-                </Alert>}
+                
                 <Container maxWidth="sm" style={{ marginTop: 15 }}>
-                    <Paper elevation={5} style={{ padding: 8, justifyContent: "center", display: "flex" }} >
+                    <Paper elevation={5} style={{ padding: 8, justifyContent: "center", display: "flex",         alignItems: 'center', }} >
                         <form>
+                        <h4><b><u>ADD CUSTOMER</u></b></h4>
+                        <br></br>
+                            <Typography component="h6" style={{ width: 'fit-content', margin: 4, fontWeight: 'bold' }}>Customer First Name</Typography>
+                            <input type="text" ref={this.firstName} placeholder="Enter First Name" name="firstName" required 
+                            style = {{
+                            width: '100%',
+                            padding: '12px 20px',
+                            margin: '8px 0',
+                            borderRadius: '4px',
+                            boxSizing: 'border-box'}}/><br></br><br></br>
 
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Customer firstName</Typography>
-                            <input type="text" ref={this.firstName} placeholder="Enter firstName" name="firstName" required /><br></br><br></br>
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Customer lastName</Typography>
-                            <input type="text" ref={this.lastName} placeholder="Enter lastName" name="lastName" required /><br></br><br></br>
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Email Id</Typography>
-                            <input type="text" ref={this.emailId} placeholder="Enter emailId" name="emailId" required /><br></br><br></br>
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Mobile Number</Typography>
-                            <input type="number" ref={this.mobileNumber} placeholder="Enter mobileNumber" name="mobileNumber" required /><br></br><br></br>
-                            <Typography variant="h6" style={{ width: 'fit-content', margin: '' }}>Address</Typography>
-                            <input type="text" ref={this.address} placeholder="Enter address" name="address" required /><br></br><br></br>
-                            <br></br><br></br>
-                            <Button style={{ align: "center" }} variant="contained" onClick={this.addCustomer.bind(this)} color="primary">Add Customer</Button>
+                            <Typography component="h6" style={{ width: 'fit-content', margin: 4, fontWeight: 'bold'  }}>Customer Last Name</Typography>
+                            <input type="text" ref={this.lastName} placeholder="Enter Last Name" name="lastName" required 
+                            style = {{
+                            width: '100%',
+                            padding: '12px 20px',
+                            margin: '8px 0',
+                            borderRadius: '4px',
+                            boxSizing: 'border-box'}}/><br></br><br></br>
+
+                            <Typography component="h6" style={{ width: 'fit-content', margin: 4, fontWeight: 'bold'  }}>Email Id</Typography>
+                            <input type="text" ref={this.emailId} placeholder="Enter EmailId" name="emailId" required
+                            style = {{
+                            width: '100%',
+                            padding: '12px 20px',
+                            margin: '8px 0',
+                            borderRadius: '4px',
+                            boxSizing: 'border-box'}} /><br></br><br></br>
+
+                            <Typography component="h6" style={{ width: 'fit-content', margin: 4, fontWeight: 'bold'  }}>Mobile Number</Typography>
+                            <input type="number" ref={this.mobileNumber} placeholder="Enter Mobile Number" name="mobileNumber" required 
+                            style = {{
+                            width: '100%',
+                            padding: '12px 20px',
+                            margin: '8px 0',
+                            borderRadius: '4px',
+                            boxSizing: 'border-box'}}/><br></br><br></br>
+
+                            <Typography component="h6" style={{ width: 'fit-content', margin: 4, fontWeight: 'bold'  }}>Address</Typography>
+                            <input type="text" ref={this.address} placeholder="Enter Address" name="address" required
+                            style = {{
+                            width: '100%',
+                            padding: '12px 20px',
+                            margin: '8px 0',
+                            borderRadius: '4px',
+                            boxSizing: 'border-box'}} /><br></br><br></br>
+                            <br></br>
+
+                            <Button style={{ align: "center", width:'80%'}} variant="contained" onClick={this.addCustomer.bind(this)} color="primary">Add Customer</Button>
+                            <Button style={{ align: "center" , width:'75%', margin: 4}} variant="contained" color="primary">
+                                <Link to={"/viewCustomers"} style={{ textDecoration: 'none', color: 'white' }}>  Cancel  </Link>
+                            </Button>
                         </form>
                     </Paper>
                 </Container>
@@ -69,6 +111,7 @@ class AddCustomer extends Component {
     }
 }
 
+// called every time the store state changes. It receives the entire store state, and should return an object of data this component needs.
 const mapStateToProps = (state) => {
     return {
         message: state.customersData.message

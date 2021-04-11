@@ -1,3 +1,5 @@
+// Reducers produce the state of an application.
+
 const initialState = {
     message: '',
     customers: [],
@@ -28,3 +30,7 @@ const reducer = (state = initialState, { type, payload }) => {
 }
 
 export default reducer;
+
+
+// The type property drives how the state should change and it's always required by Redux.
+// The payload property instead describes what should change, and might be omitted if you don't have new data to save in the store..

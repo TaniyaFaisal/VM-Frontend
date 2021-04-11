@@ -1,0 +1,238 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render App when logged in should render with given state from Redux store 1`] = `
+<div>
+  <header
+    className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"
+  >
+    <div
+      className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+    >
+      <h6
+        className="MuiTypography-root MuiTypography-h6"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        >
+          Vehicle Management Application
+        </a>
+      </h6>
+      <p
+        className="MuiTypography-root MuiTypography-body1"
+        style={
+          Object {
+            "margin": "10px",
+          }
+        }
+      >
+        <a
+          href="/users"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        >
+          Users
+        </a>
+      </p>
+      <p
+        className="MuiTypography-root MuiTypography-body1"
+        style={
+          Object {
+            "margin": "10px",
+          }
+        }
+      >
+        <a
+          href="/viewCustomers"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        >
+          Customers
+        </a>
+      </p>
+      <p
+        className="MuiTypography-root MuiTypography-body1"
+        style={
+          Object {
+            "margin": "10px",
+          }
+        }
+      >
+        <a
+          href="/viewBooking"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        >
+          Bookings
+        </a>
+      </p>
+      <p
+        className="MuiTypography-root MuiTypography-body1"
+        style={
+          Object {
+            "margin": "10px",
+          }
+        }
+      >
+        <a
+          href="/viewVehicles"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        >
+          Vehicles
+        </a>
+      </p>
+      <p
+        className="MuiTypography-root MuiTypography-body1"
+        style={
+          Object {
+            "margin": "10px",
+          }
+        }
+      >
+        <a
+          href="/viewPayment"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        >
+          Payments
+        </a>
+      </p>
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "marginLeft": "auto",
+          }
+        }
+      >
+        <h6
+          className="MuiTypography-root MuiTypography-h6"
+          style={
+            Object {
+              "margin": "10px",
+            }
+          }
+        >
+          <a
+            href="/profile"
+            onClick={[Function]}
+            style={
+              Object {
+                "color": "white",
+              }
+            }
+          >
+            Taniya
+          </a>
+        </h6>
+        <h6
+          className="MuiTypography-root MuiTypography-h6"
+          style={
+            Object {
+              "margin": "10px",
+            }
+          }
+        >
+          <a
+            href="/login"
+            onClick={[Function]}
+            style={
+              Object {
+                "color": "white",
+              }
+            }
+          >
+            LogOut
+          </a>
+        </h6>
+      </div>
+    </div>
+  </header>
+  <div>
+    <main
+      className="MuiGrid-root Profile-root-7 MuiGrid-container"
+    >
+      <div
+        className="MuiPaper-root MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-8 MuiGrid-grid-md-5 MuiPaper-elevation6"
+        style={
+          Object {
+            "margin": "auto",
+            "marginTop": "10%",
+          }
+        }
+      >
+        <div
+          className="Profile-paper-9"
+        >
+          <div
+            className="MuiAvatar-root MuiAvatar-circle Profile-avatar-10 MuiAvatar-colorDefault"
+          >
+            T
+          </div>
+          <h5
+            className="MuiTypography-root MuiTypography-h5"
+          >
+            Profile
+          </h5>
+          <br />
+          <br />
+          <div
+            className="Profile-row-11"
+          >
+            <h6
+              className="MuiTypography-root MuiTypography-h6"
+            >
+              Username:
+            </h6>
+            <h6
+              className="MuiTypography-root MuiTypography-h6"
+            >
+              Taniya
+            </h6>
+          </div>
+          <div
+            className="Profile-row-11"
+          >
+            <h6
+              className="MuiTypography-root MuiTypography-h6"
+            >
+              Email:
+            </h6>
+            <h6
+              className="MuiTypography-root MuiTypography-h6"
+            >
+              taniya@gmail.com
+            </h6>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+`;

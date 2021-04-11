@@ -1,4 +1,4 @@
-import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@material-ui/core';
+import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from '@material-ui/core';
 import React, { Component } from 'react'
 
 import { CustomerNavBar } from "./CustomerNavBar"
@@ -33,27 +33,33 @@ class DetailViewCustomer extends Component {
                         <Table aria-label="customized table">
                             <TableBody>
                                 <TableRow><TableCell align="left">
-                                    Customer Details</TableCell ><TableCell align="left">
+                                <Typography variant="h6" style={{ color: "#3f51b5", fontWeight: 'bold' }}>
+                                    CUSTOMER DETAILS</Typography></TableCell ><TableCell align="left">
                                         <Table aria-label="customized table">
                                             <TableBody>
-                                                <TableRow><TableCell align="left">
-                                                    FirstName</TableCell ><TableCell >
+                                                <TableRow ><TableCell align="left" >
+                                                <Typography variant="h6" style={{ color: "#3f51b5", fontWeight: 'bold' }}>
+                                                    FirstName</Typography></TableCell ><TableCell >
                                                         {customer.firstName}</TableCell ></TableRow>
 
                                                 <TableRow><TableCell align="left">
-                                                    LastName</TableCell ><TableCell >
+                                                <Typography variant="h6" style={{ color: "#3f51b5", fontWeight: 'bold' }}>
+                                                    LastName</Typography></TableCell ><TableCell >
                                                         {customer.lastName}</TableCell ></TableRow>
 
                                                 <TableRow><TableCell align="left">
-                                                    EmailId</TableCell ><TableCell >
+                                                <Typography variant="h6" style={{ color: "#3f51b5", fontWeight: 'bold' }}>
+                                                    EmailId</Typography></TableCell ><TableCell >
                                                         {customer.emailId}</TableCell ></TableRow>
 
                                                 <TableRow><TableCell align="left">
-                                                    MobileNumber</TableCell ><TableCell >
+                                                <Typography variant="h6" style={{ color: "#3f51b5", fontWeight: 'bold' }}>
+                                                    MobileNumber</Typography></TableCell ><TableCell >
                                                         {customer.mobileNumber}</TableCell ></TableRow>
 
                                                 <TableRow><TableCell align="left">
-                                                    Address</TableCell ><TableCell >
+                                                <Typography variant="h6" style={{ color: "#3f51b5", fontWeight: 'bold' }}>
+                                                    Address</Typography></TableCell ><TableCell >
                                                         {customer.address}</TableCell ></TableRow>
 
                                             </TableBody></Table>

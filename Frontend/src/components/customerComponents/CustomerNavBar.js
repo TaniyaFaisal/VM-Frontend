@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
     menuButton: {
         marginRight: theme.spacing(2),
+        
     },
     search: {
         position: 'relative',
@@ -35,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: fade(theme.palette.common.white, 0.15),
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
+           
         },
+        border: '2px solid black',
         marginRight: theme.spacing(2),
         marginLeft: 0,
         width: '100%',
@@ -132,9 +135,9 @@ export const CustomerNavBar = ({isAdmin}) => {
         <div className={classes.root}>
             <AppBar position="static" style={{ backgroundColor: 'ghostwhite ', color: 'black' }}>
                 <Toolbar>
-                    <Typography style={{ margin: "10px" }}><Link to="/viewCustomers" style={{ color: 'black' }}>Manage Customers</Link></Typography>
-                    <Typography style={{ margin: "10px" }}><Link to="/viewCustomers" style={{ textDecoration: 'none', color: 'black' }}>View Customers</Link></Typography>
-                    <Typography style={{ margin: "10px" }}><Link to="/addCustomer" style={{ textDecoration: 'none', color: 'black' }}>Add Customer</Link></Typography>
+                    <Typography style={{ margin: "10px" }}><Link to="/viewCustomers" style={{ color: 'black', fontWeight: 'bold' }}>Manage Customers</Link></Typography>
+                    <Typography style={{ margin: "10px" }}><Link to="/viewCustomers" style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>View Customers</Link></Typography>
+                    <Typography style={{ margin: "10px" }}><Link to="/addCustomer" style={{ textDecoration: 'none', color: 'black', fontWeight: 'bold' }}>Add Customer</Link></Typography>
 
                     {isAdmin ? <>
                     <div className={classes.search} style={{ marginLeft: 'auto' }}>
