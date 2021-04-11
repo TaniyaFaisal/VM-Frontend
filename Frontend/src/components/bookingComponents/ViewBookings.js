@@ -98,7 +98,7 @@ class ViewBookings extends Component {
                             </TableRow>
                         </TableHead>
                         
-                        {this.props && this.props.bookings && <TableBody>                           
+                        {this.props && this.props.bookings.length>=1 &&  <TableBody>                           
                             {this.props.bookings
                             .slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage)
                             .map((booking, i) => (                               

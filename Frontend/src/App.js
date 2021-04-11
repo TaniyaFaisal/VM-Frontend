@@ -8,11 +8,13 @@ import AddBooking from "./components/bookingComponents/AddBooking";
 import AddCustomer from './components/customerComponents/AddCustomer';
 import AddPayment from './components/paymentComponents/AddPayment';
 import AddUser from "./components/userComponents/AddUser"
+import AddVehicle from "./components/vehicleComponents/AddVehicle";
 import AppBar from '@material-ui/core/AppBar';
 import Dashboard from "./components/Dashboard";
 import DetailViewBooking from "./components/bookingComponents/DetailViewBooking";
 import DetailViewCustomer from './components/customerComponents/DetailViewCustomer';
 import DetailViewPayment from './components/paymentComponents/DetailViewPayment';
+import DetailViewVehicle from "./components/vehicleComponents/DetailViewVehicle";
 import Login from "./components/LoginComponent";
 import Profile from "./components/ProfileComponent";
 import Register from "./components/RegisterComponent";
@@ -22,11 +24,12 @@ import TotalRevenue from './components/paymentComponents/TotalRevenue';
 import Typography from '@material-ui/core/Typography';
 import UpdateBooking from "./components/bookingComponents/UpdateBooking";
 import UpdateCustomer from './components/customerComponents/UpdateCustomer';
+import UpdateVehicle from "./components/vehicleComponents/UpdateVehicle";
 import UserList from "./components/userComponents/UserList"
-import ViewActiveBooking from './components/activeBookingComponents/viewActiveBooking'
 import ViewBookings from "./components/bookingComponents/ViewBookings";
 import ViewCustomers from './components/customerComponents/ViewCustomers';
 import ViewPayments from './components/paymentComponents/ViewPayments';
+import ViewVehicles from "./components/vehicleComponents/ViewVehicles";
 import { clearMessage } from "./actions/message";
 import { connect } from "react-redux";
 import { history } from './helpers/history';
@@ -83,13 +86,9 @@ class App extends Component {
               <Typography style={{ margin: "10px" }}>
                 <Link to={"/viewBooking"} style={{ color: 'white' }}>Bookings</Link></Typography>
               <Typography style={{ margin: "10px" }}>
-                <Link to={"/dashboard"} style={{ color: 'white' }}>Vehicles</Link></Typography>
+                <Link to={"/viewVehicles"} style={{ color: 'white' }}>Vehicles</Link></Typography>
               <Typography style={{ margin: "10px" }}>
                 <Link to={"/viewPayment"} style={{ color: 'white' }}>Payments</Link></Typography>
-                {showAdminBoard &&   <Typography style={{ margin: "10px" }}>
-                <Link to={"/viewActiveBooking"} style={{ color: 'white' }}>Active Bookings</Link></Typography>}
-
-
 
               {currentUser ? (
                 <div style={{ marginLeft: 'auto', display: 'flex' }}>
@@ -144,7 +143,10 @@ class App extends Component {
               <Route path="/viewTotalRevenue"><TotalRevenue /></Route>
               <Route path="/detailViewPayment/:id" component={DetailViewPayment} />
               <Route path="/viewTotalPaymentByVehicle"><TotalPaymentByVehicle /></Route>
-              <Route path="/viewActiveBooking"><ViewActiveBooking /></Route>
+              <Route path="/viewVehicles"><ViewVehicles /></Route>
+              <Route path="/addVehicle"><AddVehicle /></Route>
+              <Route path="/updateVehicle/:id" component={UpdateVehicle} />
+              <Route path="/detailViewVehicle/:id" component={DetailViewVehicle} />
             </Switch>
           </div>
         </div>

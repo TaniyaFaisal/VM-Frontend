@@ -1,4 +1,3 @@
-import activeBookingReducer from "./activeBookingReducer";
 import auth from "./auth";
 import bookingReducer from "./bookingReducer";
 import { combineReducers } from "redux";
@@ -13,6 +12,5 @@ export default combineReducers({
   bookingsData:bookingReducer,
   customersData:customerReducer,
   vehiclesData: vehicleReducer,
-  paymentsData: paymentReducer,
-  activeBookingData : activeBookingReducer
+  paymentsData: paymentReducer
 });
