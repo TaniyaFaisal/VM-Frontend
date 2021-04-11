@@ -62,7 +62,7 @@ public class VehicleController {
 	}
 	
 	@GetMapping("/vehicles/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN')")
 	public ResponseEntity<Vehicle> viewVehicle(@PathVariable("id") int id) {
 		Vehicle vehicle = vehicleService.viewVehicle(id);
 		return new ResponseEntity<>(vehicle,HttpStatus.OK);

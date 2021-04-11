@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 
 const options = ['Search', 'Customer name'];
 
-export const VehicleNavBar = () => {
+export const VehicleNavBar = ({isAdmin}) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
@@ -127,7 +127,7 @@ export const VehicleNavBar = () => {
                 <Toolbar>
                     <Typography style={{ margin: "10px" }}><Link to="/viewVehicles" style={{ color: 'black' }}>Manage Vehicles</Link></Typography>
                     <Typography style={{ margin: "10px" }}><Link to="/viewVehicles" style={{ textDecoration: 'none', color: 'black' }}>View Vehicle</Link></Typography>
-                    <Typography style={{ margin: "10px" }}><Link to="/addVehicle" style={{ textDecoration: 'none', color: 'black' }}>Add Vehicle</Link></Typography>
+                    {isAdmin && <> <Typography style={{ margin: "10px" }}><Link to="/addVehicle" style={{ textDecoration: 'none', color: 'black' }}>Add Vehicle</Link></Typography>
 
                     <div className={classes.search} style={{ marginLeft: 'auto' }}>
                         <div className={classes.searchIcon}>
@@ -185,10 +185,10 @@ export const VehicleNavBar = () => {
                                         </Paper>
                                     </Grow>
                                 )}
-                            </Popper>
+                            </Popper> 
                         </Grid>
                     </Grid>
-
+                    </>}
                 </Toolbar>
             </AppBar>
         </div>

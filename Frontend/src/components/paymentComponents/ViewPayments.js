@@ -5,11 +5,8 @@ import React, { Component } from 'react'
 
 import Alert from '@material-ui/lab/Alert';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import { Link } from "react-router-dom";
 import { PaymentNavBar } from "./PaymentNavBar"
 import { Redirect } from 'react-router-dom';
-import  VisibilityIcon from '@material-ui/icons/Visibility';
 import { connect } from 'react-redux';
 
 class ViewPayments extends Component {
@@ -79,8 +76,8 @@ class ViewPayments extends Component {
                                     <TableCell align="center">{payment.TotalRevenue}</TableCell> */}
                                     <TableCell align="center">
                                         <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group" > 
-                                            <Button><Link to={"/detailPayment/" + payment.paymentId} style={{ textDecoration: 'none', color: 'white' }}><VisibilityIcon/></Link></Button>
-                                            <Button><Link to={"/updatePayment/" + payment.paymentId} style={{ textDecoration: 'none', color: 'white' }}><EditIcon/></Link></Button>
+                                            {/* <Button><Link to={"/detailPayment/" + payment.paymentId} style={{ textDecoration: 'none', color: 'white' }}><VisibilityIcon/></Link></Button>
+                                            <Button><Link to={"/updatePayment/" + payment.paymentId} style={{ textDecoration: 'none', color: 'white' }}><EditIcon/></Link></Button> */}
                                             <Button onClick={this.deletePayment.bind(this, payment.paymentId)}><DeleteIcon/></Button>
                                         </ButtonGroup>
                                     </TableCell>

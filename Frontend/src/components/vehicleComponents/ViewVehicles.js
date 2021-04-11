@@ -7,6 +7,7 @@ import Alert from '@material-ui/lab/Alert';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { Link } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 import { VehicleNavBar } from "./VehicleNavBar"
 import  VisibilityIcon from '@material-ui/icons/Visibility';
 import { connect } from 'react-redux';
@@ -36,9 +37,14 @@ class ViewVehicles extends Component {
     }
 
     render() {
+        const { isLoggedIn } = this.props;
+        if (!isLoggedIn) {
+            return <Redirect to="/login" />;
+        }
+        const isAdmin=this.props.user.roles.includes("ROLE_ADMIN")
         return (
             <div>
-                <VehicleNavBar />
+                <VehicleNavBar isAdmin={this.props.user.roles.includes("ROLE_ADMIN")}/>
                 {this.state.displayAlert && <Alert variant="filled" severity={this.props.message.includes("Successfully") ? "success" : "error"} style={{ justifyContent: "center" }}>
                     {this.props.message}
                 </Alert>}
@@ -73,8 +79,8 @@ class ViewVehicles extends Component {
                                     <TableCell align="center">{booking.totalCost}</TableCell> */}
                                     <TableCell align="center">
                                         <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group" > 
-                                            <Button><Link to={"/detailViewVehicle/" + vehicle.vehicleId} style={{ textDecoration: 'none', color: 'white' }}><VisibilityIcon/></Link></Button>
-                                            <Button><Link to={"/updateVehicle/" + vehicle.vehicleId} style={{ textDecoration: 'none', color: 'white' }}><EditIcon/></Link></Button>
+                                           {isAdmin && <> <Button><Link to={"/detailViewVehicle/" + vehicle.vehicleId} style={{ textDecoration: 'none', color: 'white' }}><VisibilityIcon/></Link></Button>
+                                            <Button><Link to={"/updateVehicle/" + vehicle.vehicleId} style={{ textDecoration: 'none', color: 'white' }}><EditIcon/></Link></Button> </>}
                                             <Button onClick={this.deleteVehicle.bind(this, vehicle.vehicleId)}><DeleteIcon/></Button>
                                         </ButtonGroup>
                                     </TableCell>
