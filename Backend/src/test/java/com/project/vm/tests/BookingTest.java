@@ -58,13 +58,13 @@ class BookingTest {
 		assertNotNull(b);
 	}
 	
-//	@Test
+	@Test
 	void testViewBookingByCustomer() {
-		List<Booking> bookings = bookingService.viewAllBooking("Abhi");
+		List<Booking> bookings = bookingService.viewAllBooking("Priya");
 		assertNotNull(bookings);
 	}
 	
-	@Test
+//	@Test
 	void testViewBookingByVehicle() {
 		List<Booking> bookings = bookingService.viewAllBookingByVehicle("DL057860");
 		assertNotNull(bookings);

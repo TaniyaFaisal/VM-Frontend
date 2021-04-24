@@ -6,6 +6,7 @@ import CheckButton from "react-validation/build/button";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Form from "react-validation/build/form";
 import Grid from '@material-ui/core/Grid';
+import { Link } from "react-router-dom";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import { Redirect } from 'react-router-dom';
@@ -188,9 +189,9 @@ class Login extends Component {
             </Button>
             <Grid container>
               <Grid item>
-                <a href="/register" >
+                <Link to="/register" >
                   {"Don't have an account? Sign Up"}
-                </a>
+                </Link>
               </Grid>
             </Grid>
 

@@ -1,44 +1,40 @@
-2021-04-11 02:49:39.418  WARN 9028 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h50m16s748ms562µs400ns).
-2021-04-11 09:56:32.959  WARN 9028 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=46s592ms272µs300ns).
-2021-04-11 10:57:34.886  INFO 15300 --- [restartedMain] com.project.vm.VmApplication             : Starting VmApplication using Java 14.0.1 on Taniya with PID 15300 (C:\Users\taniy\Desktop\Capgemini\Frontend\Project\react-redux-jwt-auth-master\Backend\bin\main started by Taniya in C:\Users\taniy\Desktop\Capgemini\Frontend\Project\react-redux-jwt-auth-master\Backend)
-2021-04-11 10:57:34.890  INFO 15300 --- [restartedMain] com.project.vm.VmApplication             : No active profile set, falling back to default profiles: default
-2021-04-11 10:57:35.031  INFO 15300 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-04-11 10:57:35.032  INFO 15300 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-04-11 10:57:37.480  INFO 15300 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-04-11 10:57:37.727  INFO 15300 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 226 ms. Found 8 JPA repository interfaces.
-2021-04-11 10:57:39.038  INFO 15300 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@425b1259' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-04-11 10:57:39.058  INFO 15300 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-04-11 10:57:40.918  INFO 15300 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
-2021-04-11 10:57:40.960  INFO 15300 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-04-11 10:57:40.963  INFO 15300 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
-2021-04-11 10:57:41.320  INFO 15300 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-04-11 10:57:41.321  INFO 15300 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6287 ms
-2021-04-11 10:57:41.616  WARN 15300 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-04-11 10:57:42.044  INFO 15300 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-04-11 10:57:42.216  INFO 15300 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.28.Final
-2021-04-11 10:57:42.551  INFO 15300 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-04-11 10:57:42.793  INFO 15300 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-04-11 10:57:43.206  INFO 15300 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-04-11 10:57:43.243  INFO 15300 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2021-04-11 10:57:46.084  INFO 15300 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-04-11 10:57:46.239  INFO 15300 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-04-11 10:57:47.244  INFO 15300 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-04-11 10:57:49.245  INFO 15300 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-04-11 10:57:49.600  INFO 15300 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/**', OPTIONS] with []
-2021-04-11 10:57:49.601  INFO 15300 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/swagger-ui.html/**'] with []
-2021-04-11 10:57:49.601  INFO 15300 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/configuration/**'] with []
-2021-04-11 10:57:49.601  INFO 15300 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/swagger-resources/**'] with []
-2021-04-11 10:57:49.602  INFO 15300 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/v2/api-docs'] with []
-2021-04-11 10:57:49.602  INFO 15300 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/webjars/**'] with []
-2021-04-11 10:57:49.664  INFO 15300 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f5cd9d7, org.springframework.security.web.context.SecurityContextPersistenceFilter@2b404cee, org.springframework.security.web.header.HeaderWriterFilter@1936842a, org.springframework.web.filter.CorsFilter@5f75a2d4, org.springframework.security.web.authentication.logout.LogoutFilter@5c77c5c9, com.project.vm.security.jwt.AuthTokenFilter@3c85a6c4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2d2574fd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@538b06db, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c7e913e, org.springframework.security.web.session.SessionManagementFilter@67e1b3ec, org.springframework.security.web.access.ExceptionTranslationFilter@35dd0ead, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1a342bd6]
-2021-04-11 10:57:49.852  INFO 15300 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-04-11 10:57:50.617  INFO 15300 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
-2021-04-11 10:57:50.619  INFO 15300 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2021-04-11 10:57:50.800  INFO 15300 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2021-04-11 10:57:51.286  INFO 15300 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2021-04-11 10:57:52.343  INFO 15300 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: viewBookingByCustomerEmailUsingGET_1
-2021-04-11 10:57:52.423  INFO 15300 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: viewAllBookingUsingGET_1
-2021-04-11 10:57:52.483  INFO 15300 --- [restartedMain] com.project.vm.VmApplication             : Started VmApplication in 18.421 seconds (JVM running for 19.632)
-2021-04-11 11:02:17.137  INFO 15300 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-04-11 11:02:17.138  INFO 15300 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-04-11 11:02:17.141  INFO 15300 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-04-24 12:12:53.801  INFO 10552 --- [restartedMain] com.project.vm.VmApplication             : Starting VmApplication using Java 14.0.1 on Taniya with PID 10552 (C:\Users\taniy\Desktop\Capgemini\Frontend\Project\react-redux-jwt-auth-master\Backend\bin\main started by Taniya in C:\Users\taniy\Desktop\Capgemini\Frontend\Project\react-redux-jwt-auth-master\Backend)
+2021-04-24 12:12:53.815  INFO 10552 --- [restartedMain] com.project.vm.VmApplication             : No active profile set, falling back to default profiles: default
+2021-04-24 12:12:54.047  INFO 10552 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-04-24 12:12:54.048  INFO 10552 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-04-24 12:12:57.653  INFO 10552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-04-24 12:12:57.871  INFO 10552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 196 ms. Found 8 JPA repository interfaces.
+2021-04-24 12:12:58.764  INFO 10552 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@5438f53' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-24 12:12:58.776  INFO 10552 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-24 12:12:59.620  INFO 10552 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2021-04-24 12:12:59.644  INFO 10552 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-24 12:12:59.645  INFO 10552 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-04-24 12:12:59.881  INFO 10552 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-04-24 12:12:59.882  INFO 10552 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5832 ms
+2021-04-24 12:13:00.057  WARN 10552 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-04-24 12:13:00.340  INFO 10552 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-04-24 12:13:00.492  INFO 10552 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.28.Final
+2021-04-24 12:13:00.930  INFO 10552 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-04-24 12:13:01.247  INFO 10552 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-04-24 12:13:01.845  INFO 10552 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-04-24 12:13:01.893  INFO 10552 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2021-04-24 12:13:05.308  INFO 10552 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-04-24 12:13:05.326  INFO 10552 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-24 12:13:06.608  INFO 10552 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-04-24 12:13:08.546  INFO 10552 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-04-24 12:13:08.979  INFO 10552 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/**', OPTIONS] with []
+2021-04-24 12:13:08.980  INFO 10552 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/swagger-ui.html/**'] with []
+2021-04-24 12:13:08.981  INFO 10552 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/configuration/**'] with []
+2021-04-24 12:13:08.982  INFO 10552 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/swagger-resources/**'] with []
+2021-04-24 12:13:08.982  INFO 10552 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/v2/api-docs'] with []
+2021-04-24 12:13:08.982  INFO 10552 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/webjars/**'] with []
+2021-04-24 12:13:09.037  INFO 10552 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@647bebda, org.springframework.security.web.context.SecurityContextPersistenceFilter@18ffbd0d, org.springframework.security.web.header.HeaderWriterFilter@76e33c46, org.springframework.web.filter.CorsFilter@5db31931, org.springframework.security.web.authentication.logout.LogoutFilter@7f02d06c, com.project.vm.security.jwt.AuthTokenFilter@136a5047, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4e65f1af, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c77c5c9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2957887b, org.springframework.security.web.session.SessionManagementFilter@5454d825, org.springframework.security.web.access.ExceptionTranslationFilter@10be115c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@190ac9c1]
+2021-04-24 12:13:09.214  INFO 10552 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-24 12:13:09.647  INFO 10552 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2021-04-24 12:13:09.650  INFO 10552 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-04-24 12:13:09.690  INFO 10552 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-04-24 12:13:09.779  INFO 10552 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-04-24 12:13:10.287  INFO 10552 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: viewBookingByCustomerEmailUsingGET_1
+2021-04-24 12:13:10.348  INFO 10552 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: viewAllBookingUsingGET_1
+2021-04-24 12:13:10.386  INFO 10552 --- [restartedMain] com.project.vm.VmApplication             : Started VmApplication in 17.564 seconds (JVM running for 18.803)
+2021-04-24 12:13:57.483  INFO 10552 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
