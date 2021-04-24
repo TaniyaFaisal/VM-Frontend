@@ -38,3 +38,6 @@
 2021-04-24 12:13:10.348  INFO 10552 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: viewAllBookingUsingGET_1
 2021-04-24 12:13:10.386  INFO 10552 --- [restartedMain] com.project.vm.VmApplication             : Started VmApplication in 17.564 seconds (JVM running for 18.803)
 2021-04-24 12:13:57.483  INFO 10552 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-24 12:13:57.484  INFO 10552 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-24 12:13:57.490  INFO 10552 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2021-04-24 12:39:47.226 ERROR 10552 --- [http-nio-8081-exec-7] c.p.vm.security.jwt.AuthEntryPointJwt    : Unauthorized error: Full authentication is required to access this resource

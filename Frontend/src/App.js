@@ -26,6 +26,8 @@ import UpdateBooking from "./components/bookingComponents/UpdateBooking";
 import UpdateCustomer from './components/customerComponents/UpdateCustomer';
 import UpdateVehicle from "./components/vehicleComponents/UpdateVehicle";
 import UserList from "./components/userComponents/UserList"
+import ViewActiveBooking from './components/activeBookingComponents/ViewActiveBooking';
+import ViewActiveBookingDate from './components/activeBookingComponents/ViewActiveBookingDate';
 import ViewBookings from "./components/bookingComponents/ViewBookings";
 import ViewCustomers from './components/customerComponents/ViewCustomers';
 import ViewPayments from './components/paymentComponents/ViewPayments';
@@ -89,6 +91,8 @@ class App extends Component {
                 <Link to={"/viewVehicles"} style={{ color: 'white' }}>Vehicles</Link></Typography>
               <Typography style={{ margin: "10px" }}>
                 <Link to={"/viewPayment"} style={{ color: 'white' }}>Payments</Link></Typography>
+                {showAdminBoard && <Typography style={{ margin: "10px" }}>
+                <Link to={"/viewActiveBooking"} style={{ color: 'white' }}>Active Bookings</Link></Typography>}
 
               {currentUser ? (
                 <div style={{ marginLeft: 'auto', display: 'flex' }}>
@@ -147,6 +151,8 @@ class App extends Component {
               <Route path="/addVehicle"><AddVehicle /></Route>
               <Route path="/updateVehicle/:id" component={UpdateVehicle} />
               <Route path="/detailViewVehicle/:id" component={DetailViewVehicle} />
+              <Route path='/viewActiveBooking'><ViewActiveBooking /></Route>
+              <Route path='/viewActiveBookingDate'><ViewActiveBookingDate /></Route>
             </Switch>
           </div>
         </div>
